@@ -1,0 +1,65 @@
+authelia:
+  domain: khuedoan.com
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    className: nginx
+    subdomain: auth
+    tls:
+      enabled: true
+      secret: authelia-tls
+  pod:
+    kind: Deployment
+    # TODO
+    env:
+      - name: AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE
+        value: /secrets2/LDAP_PASSWORD2
+  configMap:
+    theme: auto
+    # TODO enable 2FA
+    totp:
+      disable: true
+    webauthn:
+      disable: true
+    authentication_backend:
+      ldap:
+        enabled: true
+        implementation: custom
+        url: ldap://lldap.lldap:389
+        base_dn: "dc=home,dc=arpa"
+        username_attribute: "uid"
+        additional_users_dn: "ou=people"
+        users_filter: "(&({username_attribute}={input})(objectClass=person))"
+        group_name_attribute: "cn"
+        additional_groups_dn: "ou=groups"
+        groups_filter: "(member={dn})"
+        user: "uid=admin,ou=people,dc=home,dc=arpa"
+    session:
+      redis:
+        enabled: false
+    storage:
+      local:
+        enabled: true
+      postgres:
+        enabled: false
+    notifier:
+      # TODO switch to mail
+      filesystem:
+        enabled: true
+        # cat this file to view notification
+        filename: /config/notification.txt
+      smtp:
+        enabled: false
+    identity_providers:
+      oidc:
+        enabled: true
+        clients:
+          - id: dex
+            description: Dex
+            # TODO Move to secret
+            secret: authdex123456!
+            consent_mode: implicit
+            authorization_policy: one_factor # TODO remove, use 2FA
+            redirect_uris:
+              - https://dex.khuedoan.com/callback
