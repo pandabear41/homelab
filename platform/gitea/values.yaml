@@ -7,7 +7,7 @@ gitea:
       hajimari.io/appName: Gitea
       hajimari.io/icon: git
     hosts:
-      - host: &host git.khuedoan.com
+      - host: &host git.pl4.me
         paths:
           - path: /
             pathType: Prefix
@@ -21,6 +21,6 @@ gitea:
     config:
       server:
         LANDING_PAGE: explore
-        ROOT_URL: https://git.khuedoan.com
+        ROOT_URL: https://git.pl4.me
       webhook:
         ALLOWED_HOST_LIST: private

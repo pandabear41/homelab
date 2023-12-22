@@ -1,6 +1,6 @@
 dex:
   config:
-    issuer: https://dex.khuedoan.com
+    issuer: https://dex.pl4.me
     storage:
       type: kubernetes
       config:
@@ -14,13 +14,13 @@ dex:
         config:
           clientID: $GITEA_CLIENT_ID
           clientSecret: $GITEA_CLIENT_SECRET
-          redirectURI: https://dex.khuedoan.com/callback
-          baseURL: https://git.khuedoan.com
+          redirectURI: https://dex.pl4.me/callback
+          baseURL: https://git.pl4.me
     staticClients:
       - id: grafana-sso
         name: Grafana
         redirectURIs:
-          - 'https://grafana.khuedoan.com/login/generic_oauth'
+          - 'https://grafana.pl4.me/login/generic_oauth'
         secretEnv: GRAFANA_SSO_CLIENT_SECRET
   envFrom:
     - secretRef:
@@ -32,7 +32,7 @@ dex:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       hajimari.io/enable: 'false'
     hosts:
-      - host: &host dex.khuedoan.com
+      - host: &host dex.pl4.me
         paths:
           - path: /
             pathType: ImplementationSpecific
