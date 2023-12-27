@@ -1,6 +1,6 @@
 module git.pl4.me/khuedoan/homelab/gitea/config
 
-go 1.19
+go 1.21
 
 require (
 	code.gitea.io/sdk/gitea v0.15.1
