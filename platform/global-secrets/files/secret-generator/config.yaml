@@ -7,7 +7,7 @@
 
 # Dex
 
-- path: dex.gitea
+- name: dex.gitea
   data:
     - key: client_id
       length: 32
