@@ -1,6 +1,16 @@
 longhorn:
   defaultSettings:
+    replicaAutoBalance: best-effort
     nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
   persistence:
     # If you have three or more nodes for storage, use 3; otherwise use 2
     defaultClassReplicaCount: 2  # TODO run DR test to see if we actually need 3
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    host: longhorn.pl4.me
+    path: /
+    tls:
+      tlsSecret: longhorn-tls-certificate
