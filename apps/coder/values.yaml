@@ -22,8 +22,8 @@ coder:
             key: url
 
       # This env enables the Prometheus metrics endpoint.
-      - name: CODER_PROMETHEUS_ADDRESS
-        value: "0.0.0.0:2112"
+      # - name: CODER_PROMETHEUS_ADDRESS
+      #   value: "0.0.0.0:2112"
     # tls:
     #   secretNames:
     #     - my-tls-secret-name
