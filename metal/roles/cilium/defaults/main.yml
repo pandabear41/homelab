@@ -5,8 +5,16 @@ cilium_values:
   operator:
     replicas: 1
   kubeProxyReplacement: true
+  k8sClientRateLimit:
+    qps: 32
+    burst: 64
+  l2podAnnouncements:
+    enabled: true
+    interface: eno2
   l2announcements:
     enabled: true
+  # bgpControlPlane:
+  #   enabled: true
   # TODO the host and port are k3s-specific, generic solution is in progress
   # https://github.com/cilium/cilium/issues/19038
   # https://github.com/cilium/cilium/pull/28741
