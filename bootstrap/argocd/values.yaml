@@ -63,8 +63,6 @@ argo-cd:
       ingressClassName: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        hajimari.io/appName: ArgoCD
-        hajimari.io/icon: robot
       hosts:
         - &host argocd.pl4.me
       tls:

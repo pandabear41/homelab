@@ -55,7 +55,7 @@ More information can be found in [the roadmap](#roadmap) below.
 - [x] Support multiple environments (dev, prod)
 - [ ] Monitoring and alerting 🚧
 - [ ] Automated offsite backups 🚧
-- [ ] Single sign-on 🚧
+- [x] Single sign-on
 - [x] Infrastructure testing
 
 Some demo videos and screenshots are shown here.
@@ -68,27 +68,27 @@ They can't capture all the project's features, but they are sufficient to get a 
 | [![][pxe-demo]](https://www.youtube.com/watch?v=y-d7btNNAT8)                                |
 | PXE boot                                                                                    |
 | [![][homepage-demo]][homepage-demo]                                                         |
-| Homepage with Ingress discovery powered by [Hajimari](https://github.com/toboshii/hajimari) |
+| Homepage powered by... [Homepage](https://gethomepage.dev)                                  |
 | [![][grafana-demo]][grafana-demo]                                                           |
-| Monitoring dashboard powered by [Grafana](https://grafana.com/)                             |
+| Monitoring dashboard powered by [Grafana](https://grafana.com)                              |
 | [![][gitea-demo]][gitea-demo]                                                               |
-| Git server powered by [Gitea](https://gitea.io/en-us/)                                      |
+| Git server powered by [Gitea](https://gitea.io/en-us)                                       |
 | [![][matrix-demo]][matrix-demo]                                                             |
 | [Matrix](https://matrix.org/) chat server                                                   |
-| [![][tekton-demo]][tekton-demo]                                                             |
-| Continuous integration with [Tekton](https://tekton.dev/)                                   |
+| [![][woodpecker-demo]][woodpecker-demo]                                                     |
+| Continuous integration with [Woodpecker CI](https://woodpecker-ci.org)                      |
 | [![][argocd-demo]][argocd-demo]                                                             |
-| Continuous deployment with [ArgoCD](https://argoproj.github.io/cd/)                         |
+| Continuous deployment with [ArgoCD](https://argoproj.github.io/cd)                          |
 | [![][lens-demo]][lens-demo]                                                                 |
-| Cluster management using [Lens](https://k8slens.dev/)                                       |
+| Cluster management using [Lens](https://k8slens.dev)                                        |
 
 [deploy-demo]: https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7.svg
 [pxe-demo]: https://user-images.githubusercontent.com/27996771/157303477-df2e7410-8f02-4648-a86c-71e6b7e89e35.png
-[homepage-demo]: https://user-images.githubusercontent.com/27996771/149445807-0f869eb7-d8f5-4fef-ab97-ac281df91a06.png
+[homepage-demo]: https://github.com/khuedoan/homelab/assets/27996771/d0eaf620-be08-48d8-8420-40bcaa86093b
 [grafana-demo]: https://user-images.githubusercontent.com/27996771/149446631-1c5d056b-1fdc-48e6-96ba-e1abe1762be0.png
 [gitea-demo]: https://user-images.githubusercontent.com/27996771/149444871-38889c9d-862f-41ff-8c05-8ece21da3e9c.png
 [matrix-demo]: https://user-images.githubusercontent.com/27996771/149448510-7163310c-2049-4ccd-901d-f11f605bfc32.png
-[tekton-demo]: https://user-images.githubusercontent.com/27996771/149445374-58fd0605-bb9a-46e4-81d6-5e584d2b94a9.png
+[woodpecker-demo]: https://github.com/khuedoan/homelab/assets/27996771/5d887688-d20a-44c8-8f77-0c625527dfe4
 [argocd-demo]: https://user-images.githubusercontent.com/27996771/149444716-fc0d7282-4cf7-4ddb-97a4-1a3fb47ff2b8.png
 [lens-demo]: https://user-images.githubusercontent.com/27996771/149448896-9d79947d-468c-45c6-a81d-b43654e8ab6b.png
 
@@ -166,6 +166,11 @@ They can't capture all the project's features, but they are sufficient to get a 
         <td>Lightweight distribution of Kubernetes</td>
     </tr>
     <tr>
+        <td><img width="32" src="https://kanidm.com/images/logo.svg"></td>
+        <td><a href="https://kanidm.com">Kanidm</a></td>
+        <td>Modern and simple identity management platform</td>
+    </tr>
+    <tr>
         <td><img width="32" src="https://avatars.githubusercontent.com/u/13629408"></td>
         <td><a href="https://kubernetes.io">Kubernetes</a></td>
         <td>Container-orchestration system, the backbone of this project</td>
@@ -196,9 +201,9 @@ They can't capture all the project's features, but they are sufficient to get a 
         <td>Automatically update dependencies</td>
     </tr>
     <tr>
-        <td><img width="32" src="https://avatars.githubusercontent.com/u/47602533?s=200&v=4"></td>
-        <td><a href="https://tekton.dev">Tekton</a></td>
-        <td>Cloud native solution for building CI/CD systems</td>
+        <td><img width="32" src="https://avatars.githubusercontent.com/u/84780935?s=200&v=4"></td>
+        <td><a href="https://woodpecker-ci.org">Woodpecker CI</a></td>
+        <td>Simple yet powerful CI/CD engine with great extensibility</td>
     </tr>
     <tr>
         <td><img width="32" src="https://docs.zerotier.com/img/ZeroTierIcon.png"></td>
@@ -245,6 +250,7 @@ References:
 - [Pre-commit config from k8s-at-home/flux-cluster-template](https://github.com/k8s-at-home/flux-cluster-template)
 - [Diátaxis technical documentation framework](https://diataxis.fr)
 - [Official Terratest examples](https://github.com/gruntwork-io/terratest/tree/master/test)
+- [Self-host an automated Jellyfin media streaming stack](https://zerodya.net/self-host-jellyfin-media-streaming-stack)
 
 Here is a list of the contributors who have helped to improve this project.
 Big shout-out to them!
