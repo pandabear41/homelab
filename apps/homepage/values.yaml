@@ -59,12 +59,11 @@ app-template:
               provider: google
               target: _blank
         services.yaml: |
-          - Communication:
+          - Popular:
             - Matrix:
                 href: https://chat.pl4.me
                 description: Chat client
                 icon: element.svg
-          - Media:
             - Jellyfin:
                 href: https://jellyfin.pl4.me
                 description: Media system (movies, music, etc.)
@@ -73,6 +72,11 @@ app-template:
                 href: https://jellyseerr.pl4.me
                 description: Request media
                 icon: jellyseerr.svg
+            - Paperless:
+                href: https://paperless.pl4.me
+                description: Document management system
+                icon: paperless.svg
+          - Management:
             - Transmission:
                 href: https://transmission.pl4.me
                 description: Bittorrent client
@@ -89,6 +93,10 @@ app-template:
                 href: https://sonarr.pl4.me
                 description: TV show manager
                 icon: sonarr.svg
+            - Kanidm:
+                href: https://auth.pl4.me
+                description: Identity management
+                icon: https://auth.pl4.me/pkg/img/logo-square.svg
           - Development:
             - Gitea:
                 href: https://git.pl4.me
@@ -111,10 +119,6 @@ app-template:
                 description: Observability dashboards
                 icon: grafana.svg
           - Utilities:
-            - Kanidm:
-                href: https://auth.pl4.me
-                description: Identity management
-                icon: https://auth.pl4.me/pkg/img/logo-square.svg
             - Excalidraw:
                 href: https://draw.pl4.me
                 description: Virtual whiteboard
