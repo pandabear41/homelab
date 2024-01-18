@@ -1,12 +1,12 @@
 argo-cd:
   server:
-    metrics: &metrics
+    metrics: &monitoring-metrics
       enabled: false
       serviceMonitor:
         enabled: false
   controller:
-    metrics: *metrics
+    metrics: *monitoring-metrics
   repoServer:
-    metrics: *metrics
+    metrics: *monitoring-metrics
   redis:
-    metrics: *metrics
+    metrics: *monitoring-metrics
