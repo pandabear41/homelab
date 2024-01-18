@@ -3,10 +3,6 @@ argo-cd:
     extraArgs:
       - --insecure
     config:
-      # resource.ignoreResourceUpdatesEnabled: true
-      # resource.customizations.ignoreResourceUpdates.all: |
-      #   jsonPointers:
-      #     - /status
       resource.customizations.health.argoproj.io_Application: |
         hs = {}
         hs.status = "Progressing"
