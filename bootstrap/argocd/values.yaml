@@ -16,7 +16,7 @@ argo-cd:
             end
           end
         end
-        return hs
+        return hs      
       resource.exclusions: |
         - apiGroups:
           - "*"
@@ -58,7 +58,6 @@ argo-cd:
         jqPathExpressions:
         - '.webhooks[]?.failurePolicy'
         - '.webhooks[]?.rules[]?.resources'
-        return hs
     ingress:
       enabled: true
       ingressClassName: nginx
