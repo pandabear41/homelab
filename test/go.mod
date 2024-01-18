@@ -1,4 +1,4 @@
-module git.khuedoan.com/ops/homelab
+module git.pl4.me/ops/homelab
 
 go 1.21
 

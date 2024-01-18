@@ -64,35 +64,35 @@ app-template:
               service:
                 name: main
                 port: http
-        - host: &transmissionHost transmission.khuedoan.com
+        - host: &transmissionHost transmission.pl4.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 name: main
                 port: transmission
-        - host: &prowlarrHost prowlarr.khuedoan.com
+        - host: &prowlarrHost prowlarr.pl4.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 name: main
                 port: prowlarr
-        - host: &radarrHost radarr.khuedoan.com
+        - host: &radarrHost radarr.pl4.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 name: main
                 port: radarr
-        - host: &sonarrHost sonarr.khuedoan.com
+        - host: &sonarrHost sonarr.pl4.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 name: main
                 port: sonarr
-        - host: &jellyseerrHost jellyseerr.khuedoan.com
+        - host: &jellyseerrHost jellyseerr.pl4.me
           paths:
             - path: /
               pathType: Prefix

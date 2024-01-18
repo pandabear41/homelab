@@ -32,7 +32,7 @@ dex:
       - id: gitea
         name: Gitea
         redirectURIs:
-          - 'https://git.khuedoan.com/user/oauth2/Dex/callback'
+          - 'https://git.pl4.me/user/oauth2/Dex/callback'
         secretEnv: GITEA_CLIENT_SECRET
   envFrom:
     - secretRef:
