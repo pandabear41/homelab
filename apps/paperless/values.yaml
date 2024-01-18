@@ -9,7 +9,7 @@ app-template:
           env:
             PAPERLESS_PORT: 8000
             PAPERLESS_ADMIN_USER: admin
-            PAPERLESS_URL: https://paperless.khuedoan.com
+            PAPERLESS_URL: https://paperless.pl4.me
           envFrom:
             - secret: "{{ .Release.Name }}-secret"
         redis:
@@ -28,7 +28,7 @@ app-template:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        external-dns.alpha.kubernetes.io/target: homelab-tunnel.khuedoan.com
+        external-dns.alpha.kubernetes.io/target: homelab-tunnel.pl4.me
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'true'
       hosts:
         - host: &host paperless.pl4.me
