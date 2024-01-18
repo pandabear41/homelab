@@ -27,6 +27,7 @@ app-template:
               name: main
               port: http
     tls:
-      - hosts:
+      - secretName: speedtest-tls-certificate
+        hosts:
           - *host
-        secretName: speedtest-tls-certificate
+        
