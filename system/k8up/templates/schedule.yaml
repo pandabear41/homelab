@@ -17,7 +17,7 @@ spec:
       name: backblaze-credentials
       key: repo-password
   backup:
-    schedule: '*/10 * * * *'
+    schedule: '*/5 * * * *'
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
     # TODO
