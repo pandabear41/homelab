@@ -130,7 +130,7 @@ app-template:
         bookmarks.yaml: |
           - Homelab:
             - Documentation:
-              - href: https://homelab.pl4.me
+              - href: https://homelab.khuedoan.com
                 icon: google-docs.svg
             - Public homelab repository:
               - href: https://github.com/pandabear41/homelab
@@ -149,12 +149,12 @@ app-template:
             - Router:
               - href: https://192.168.15.1
                 icon: router.svg
-            - Proxmox:
-              - href: https://proxmox:8006
-                icon: proxmox.svg
-            - Google Cloud:
-              - href: https://console.cloud.google.com
-                icon: google-cloud-platform.svg
-            - Oracle Cloud:
-              - href: https://cloud.oracle.com
-                icon: oracle-cloud.svg
+            # - Proxmox:
+            #   - href: https://proxmox:8006
+            #     icon: proxmox.svg
+            # - Google Cloud:
+            #   - href: https://console.cloud.google.com
+            #     icon: google-cloud-platform.svg
+            # - Oracle Cloud:
+            #   - href: https://cloud.oracle.com
+            #     icon: oracle-cloud.svg
