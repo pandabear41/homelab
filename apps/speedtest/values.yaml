@@ -13,19 +13,20 @@ app-template:
           port: 3000
           protocol: HTTP
   ingress:
-    enabled: true
-    className: nginx
-    annotations:
-      nginx.ingress.kubernetes.io/proxy-body-size: 50m
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts:
-      - host: &host speedtest.pl4.me
-        paths:
-          - path: /
-            pathType: Prefix
-            service:
-              name: main
-              port: http
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: 50m
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host speedtest.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http
     tls:
       - secretName: speedtest-tls-certificate
         hosts:
