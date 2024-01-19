@@ -1,6 +1,6 @@
-global:
-  image:
-    tag: v2.9.3
+# global:
+#   image:
+#     tag: v2.9.3
 argo-cd:
   server:
     extraArgs:
