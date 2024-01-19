@@ -112,8 +112,6 @@ app-template:
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
-      annotations:
-        k8up.io/backup: "true"
       advancedMounts:
         main:
           main:
