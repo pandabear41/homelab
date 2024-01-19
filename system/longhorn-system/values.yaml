@@ -2,6 +2,8 @@ longhorn:
   defaultSettings:
     replicaAutoBalance: best-effort
     nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+    backupTarget: s3://pl4-homelab-backup@us-east-1/
+    backupTargetCredentialSecret: backblaze-credentials
   persistence:
     # If you have three or more nodes for storage, use 3; otherwise use 2
     defaultClassReplicaCount: 2  # TODO run DR test to see if we actually need 3
