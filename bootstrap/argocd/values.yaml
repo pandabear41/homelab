@@ -3,6 +3,8 @@ global:
     tag: v2.9.3
 argo-cd:
   server:
+    containerPorts:
+      metrics: 8082
     extraArgs:
       - --insecure
     config:
