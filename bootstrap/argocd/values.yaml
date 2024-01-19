@@ -5,6 +5,7 @@ argo-cd:
   server:
     containerPorts:
       metrics: 8082
+      # Need to force metrics port as it was auto selecting 8083  
     extraArgs:
       - --insecure
     config:
