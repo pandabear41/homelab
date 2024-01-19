@@ -2,6 +2,6 @@ apiVersion: v2
 name: k8up
 version: 0.0.0
 dependencies:
-  - name: k8up-io/k8up
+  - name: k8up
     version: 4.4.3
     repository: https://k8up-io.github.io/k8up
