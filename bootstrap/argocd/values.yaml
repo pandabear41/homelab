@@ -6,7 +6,11 @@ argo-cd:
     extraArgs:
       - --insecure
     config:
-      statusbadge.enabled: 'true'
+      # statusbadge.enabled: 'true'
+      resource.ignoreResourceUpdatesEnabled: true
+      resource.customizations.ignoreResourceUpdates.all: |
+        jsonPointers:
+          - /status
       resource.customizations.health.argoproj.io_Application: |
         hs = {}
         hs.status = "Progressing"
