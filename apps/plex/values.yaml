@@ -18,11 +18,14 @@ plex:
           - *host
   persistence:
     transcode:
+      enabled: true
       accessMode: ReadWriteMany
       size: 100Gi
     data:
+      enabled: true
       accessMode: ReadWriteMany
       size: 500Gi
     config:
+      enabled: true
       accessMode: ReadWriteMany
       size: 50Gi
