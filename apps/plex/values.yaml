@@ -1,0 +1,28 @@
+kubePlex:
+  claimToken: "claim-s7SYzzHS6xuxmU7yRPat"
+  timezone: "America/Phoenix"
+
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: &host plex.pl4.me
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: plex-tls-certificate
+        hosts:
+          - *host
+  persistence:
+    transcode:
+      accessMode: ReadWriteMany
+      size: 100Gi
+    data:
+      accessMode: ReadWriteMany
+      size: 500Gi
+    config:
+      accessMode: ReadWriteMany
+      size: 50Gi
