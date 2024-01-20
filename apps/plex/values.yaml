@@ -1,31 +1,31 @@
-plex:
-  claimToken: "claim-s7SYzzHS6xuxmU7yRPat"
-  timezone: "America/Phoenix"
 
-  ingress:
+claimToken: "claim-s7SYzzHS6xuxmU7yRPat"
+timezone: "America/Phoenix"
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: &host plex.pl4.me
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: plex-tls-certificate
+      hosts:
+        - *host
+persistence:
+  transcode:
     enabled: true
-    className: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts:
-      - host: &host plex.pl4.me
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - secretName: plex-tls-certificate
-        hosts:
-          - *host
-  persistence:
-    transcode:
-      enabled: true
-      accessMode: ReadWriteMany
-      size: 100Gi
-    data:
-      enabled: true
-      accessMode: ReadWriteMany
-      size: 500Gi
-    config:
-      enabled: true
-      accessMode: ReadWriteMany
-      size: 50Gi
+    accessMode: ReadWriteMany
+    size: 100Gi
+  data:
+    enabled: true
+    accessMode: ReadWriteMany
+    size: 500Gi
+  config:
+    enabled: true
+    accessMode: ReadWriteMany
+    size: 50Gi
