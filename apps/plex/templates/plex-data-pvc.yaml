@@ -7,7 +7,7 @@ spec:
   storageClassName: plex-nfs
   volumeName: kube-plex-data-nfs-pv
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 500Gi
