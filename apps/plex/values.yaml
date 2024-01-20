@@ -4,18 +4,16 @@ timezone: "America/Phoenix"
 
 ingress:
   enabled: true
-  className: nginx
+  ingressClass: nginx
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
     - host: &host plex.pl4.me
-      paths:
-        - path: /
-          pathType: Prefix
   tls:
     - secretName: plex-tls-certificate
       hosts:
         - *host
+        
 persistence:
   transcode:
     enabled: true
