@@ -4,6 +4,7 @@ metadata:
   namespace: plex
   name: kube-plex-data-nfs-pvc
 spec:
+  volumeName: kube-plex-data-nfs-pv
   accessModes:
     - ReadOnlyMany
   resources:
