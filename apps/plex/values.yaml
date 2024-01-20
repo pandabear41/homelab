@@ -1,29 +1,29 @@
+kube-plex:
+  claimToken: "claim-s7SYzzHS6xuxmU7yRPat"
+  timezone: "America/Phoenix"
 
-claimToken: "claim-s7SYzzHS6xuxmU7yRPat"
-timezone: "America/Phoenix"
-
-ingress:
-  enabled: true
-  ingressClass: nginx
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  hosts:
-    - host: &host plex.pl4.me
-      path: /
-      pathType: Prefix
-  tls:
-    - secretName: plex-tls-certificate
-      hosts:
-        - *host
-
-persistence:
-  transcode:
+  ingress:
     enabled: true
-    accessMode: ReadWriteMany
-    size: 100Gi
-  data:
-    accessMode: ReadWriteMany
-    size: 300Gi
-  config:
-    accessMode: ReadWriteMany
-    size: 20Gi
+    ingressClass: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: &host plex.pl4.me
+        path: /
+        pathType: Prefix
+    tls:
+      - secretName: plex-tls-certificate
+        hosts:
+          - *host
+
+  persistence:
+    transcode:
+      enabled: true
+      accessMode: ReadWriteMany
+      size: 100Gi
+    data:
+      accessMode: ReadWriteMany
+      size: 300Gi
+    config:
+      accessMode: ReadWriteMany
+      size: 20Gi
