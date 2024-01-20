@@ -23,6 +23,7 @@ kube-plex:
       size: 100Gi
     data:
       enabled: true
+      accessMode: ReadWriteMany
       type: nfs
       server: 192.168.16.30
       path: /plex
