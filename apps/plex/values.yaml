@@ -22,11 +22,7 @@ kube-plex:
       accessMode: ReadWriteMany
       size: 100Gi
     data:
-      enabled: true
-      accessMode: ReadWriteMany
-      type: nfs
-      server: 192.168.16.30
-      path: /plex
+      claimName: "kube-plex-data-nfs-pvc"
     config:
       accessMode: ReadWriteMany
       size: 20Gi
