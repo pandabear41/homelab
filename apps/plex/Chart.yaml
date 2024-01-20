@@ -1,7 +1,7 @@
 apiVersion: v2
 name: plex
-version: 0.0.0
+version: 0.0.1
 dependencies:
-  - name: kube-plex
-    version: 0.3.7
-    repository: https://ressu.github.io/kube-plex
+  - name: plex-media-server
+    repository: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
+    version: 0.1.8
