@@ -11,13 +11,13 @@ plex-media-server:
     configStorage: 30Gi
 
   # Volume definition
-  extraVolumeMounts:
-    - mountPath: /data
-      name: media-plex
-  extraVolumes:
-    - name: media-plex
-      accessMode: ReadWriteMany
-      size: 300Gi
+  # extraVolumeMounts:
+  #   - mountPath: /data
+  #     name: media-plex
+  # extraVolumes:
+  #   - name: media-plex
+  #     accessMode: ReadWriteMany
+  #     size: 300Gi
 
   
   ingress:
