@@ -1,5 +1,5 @@
 kube-plex:
-  claimToken: "claim-s7SYzzHS6xuxmU7yRPat"
+  claimToken: "claim-ySBRuzGFVedxD9VsXZ54"
   timezone: "America/Phoenix"
 
   ingress:
