@@ -3,6 +3,8 @@ kind: PersistentVolume
 metadata: 
   name: kube-plex-data-nfs-pv
 spec:
+  storageClassName: plex-nfs
+  persistentVolumeReclaimPolicy: Retain
   capacity:
     storage: 500Gi
   accessModes:
