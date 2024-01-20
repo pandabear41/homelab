@@ -1,29 +1,10 @@
-plex-media-server:
-  fullnameOverride: "pms"
+kube-plex:
+  claimToken: "claim-ySBRuzGFVedxD9VsXZ54"
+  timezone: "America/Phoenix"
 
-  extraEnv:
-    TZ: "America/Phoenix"
-
-  service:
-    type: LoadBalancer
-
-  pms:
-    configStorage: 30Gi
-
-  # Volume definition
-  extraVolumeMounts:
-    - mountPath: /data
-      name: media-plex
-  extraVolumes:
-    - name: media-plex
-      accessMode: ReadWriteMany
-      size: 300Gi
-
-  
   ingress:
     enabled: true
-    ingressClassName: nginx
-    url: plex.pl4.me
+    ingressClass: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
@@ -34,3 +15,15 @@ plex-media-server:
       - secretName: plex-tls-certificate
         hosts:
           - *host
+
+  persistence:
+    transcode:
+      enabled: true
+      accessMode: ReadWriteMany
+      size: 100Gi
+    data:
+      accessMode: ReadWriteMany
+      size: 300Gi
+    config:
+      accessMode: ReadWriteMany
+      size: 20Gi
