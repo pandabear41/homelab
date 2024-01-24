@@ -9,6 +9,9 @@ app-template:
           image:
             repository: docker.io/jellyfin/jellyfin
             tag: 10.8.13
+          volumeMounts:
+            - name: intel-gpu
+              mountPath: /dev/dri/renderD128
         transmission:
           image:
             repository: lscr.io/linuxserver/transmission
@@ -109,6 +112,10 @@ app-template:
             - *sonarrHost
             - *jellyseerrHost
   persistence:
+    intel-gpu:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/dri/renderD128
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
