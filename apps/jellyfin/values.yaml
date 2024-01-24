@@ -123,6 +123,7 @@ app-template:
     config-transcodes:
       name: config-transcodes
       type: emptyDir
+      medium: Memory
       sizeLimit: 512Mi
       advancedMounts:
         main:
@@ -131,6 +132,7 @@ app-template:
     config-semaphore:
       name: config-semaphore
       type: emptyDir
+      medium: Memory
       sizeLimit: 10Mi
       advancedMounts:
         main:
@@ -142,16 +144,8 @@ app-template:
       advancedMounts:
         main:
           main:
-            - path: /config/config
-              subPath: jellyfin/config/config
-            - path: /config/data
-              subPath: jellyfin/config/data
-            - path: /config/metadata
-              subPath: jellyfin/config/metadata
-            - path: /config/plugins
-              subPath: jellyfin/config/plugins
-            - path: /config/root
-              subPath: jellyfin/config/root
+            - path: /config
+              subPath: jellyfin/config
             - path: /media/movies
               subPath: movies
             - path: /media/shows
