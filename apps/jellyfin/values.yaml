@@ -13,9 +13,6 @@ app-template:
             tag: 10.8.13
           securityContext:
             privileged: true
-          volumeMounts:
-            - name: intel-gpu
-              mountPath: /dev/dri/renderD128
         transmission:
           image:
             repository: lscr.io/linuxserver/transmission
@@ -119,6 +116,10 @@ app-template:
     intel-gpu:
       type: hostPath
       hostPath: /dev/dri/renderD128
+      advancedMounts:
+        main:
+          main:
+            - path: /dev/dri/renderD128
     config-transcodes:
       name: config-transcodes
       type: emptyDir
@@ -126,7 +127,7 @@ app-template:
       advancedMounts:
         main:
           main:
-            path: /config/transcodes
+            - path: /config/transcodes
     config-semaphore:
       name: config-semaphore
       type: emptyDir
@@ -134,7 +135,7 @@ app-template:
       advancedMounts:
         main:
           main:
-            path: /config/semaphore
+            - path: /config/semaphore
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
