@@ -18,9 +18,11 @@ app-template:
                 - SYS_ADMIN
           resources:
             requests:
-              gpu.intel.com/i915: 2
+              gpu.intel.com/i915: 1
             limits:
-              gpu.intel.com/i915: 2
+              gpu.intel.com/i915: 1
+          env:
+            ALLOWED_NETWORKS: "192.168.15.1/24"
   service:
     main:
       ports:
