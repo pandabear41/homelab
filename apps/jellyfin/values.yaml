@@ -59,11 +59,11 @@ app-template:
       controller: main
       ports:
         transmission-seed:
-          port: 31413
+          port: 51413
           nodePort: 31413
           protocol: TCP
         transmission-seed-udp:
-          port: 31413
+          port: 51413
           nodePort: 31413
           protocol: UDP
   ingress:
