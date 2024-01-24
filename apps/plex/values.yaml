@@ -52,13 +52,6 @@ app-template:
             - *plexHost
 
   persistence:
-    intel-gpu:
-      type: hostPath
-      hostPath: /dev/dri/renderD128
-      advancedMounts:
-        main:
-          main:
-            - path: /dev/dri/renderD128
     pms-transcodes:
       name: pms-transcodes
       type: emptyDir
