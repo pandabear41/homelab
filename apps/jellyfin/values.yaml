@@ -42,16 +42,6 @@ app-template:
         transmission:
           port: 9091
           protocol: HTTP
-        transmission-seed:
-          type: NodePort
-          port: 31413
-          nodePort: 31413
-          protocol: TCP
-        transmission-seed-udp:
-          type: NodePort
-          port: 31413
-          nodePort: 31413
-          protocol: UDP
         prowlarr:
           port: 9696
           protocol: HTTP
@@ -64,6 +54,17 @@ app-template:
         jellyseerr:
           port: 5055
           protocol: HTTP
+    seed:
+      type: NodePort
+      ports:
+        transmission-seed:
+          port: 31413
+          nodePort: 31413
+          protocol: TCP
+        transmission-seed-udp:
+          port: 31413
+          nodePort: 31413
+          protocol: UDP
   ingress:
     main:
       enabled: true
