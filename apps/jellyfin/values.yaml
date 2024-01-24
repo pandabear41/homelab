@@ -2,6 +2,8 @@ app-template:
   defaultPodOptions:
     securityContext:
       fsGroup: 1000
+      supplementalGroups:
+        - 105
   controllers:
     main:
       containers:
