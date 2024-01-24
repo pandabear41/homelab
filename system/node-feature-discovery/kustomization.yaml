@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - https://github.com/intel/intel-device-plugins-for-kubernetes/deployments/nfd?ref=v0.29.0
   - https://github.com/intel/intel-device-plugins-for-kubernetes/deployments/nfd/overlays/node-feature-rules?ref=v0.29.0
+  - https://github.com/intel/intel-device-plugins-for-kubernetes/deployments/gpu_plugin/overlays/nfd_labeled_nodes?ref=v0.29.0
