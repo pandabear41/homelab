@@ -22,6 +22,9 @@ app-template:
             limits:
               gpu.intel.com/i915: 1
           env:
+            PLEX_CLAIM: "claim-tU7s_C4GXMvcU5wzUMbx"
+            HOSTNAME: "plex.pl4.me"
+            TZ: "America/Phoenix"
             ALLOWED_NETWORKS: "192.168.15.1/24"
   service:
     main:
