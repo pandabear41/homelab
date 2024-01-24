@@ -57,6 +57,8 @@ app-template:
     seed:
       type: NodePort
       controller: main
+      externalTrafficPolicy: Local
+      primary: false
       ports:
         transmission-seed:
           port: 51413
