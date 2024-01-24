@@ -3,6 +3,7 @@ kube-plex:
   timezone: "America/Phoenix"
 
   kubePlex:
+    loglevel: "debug"
     resources:
       requests:
         gpu.intel.com/i915: 1
