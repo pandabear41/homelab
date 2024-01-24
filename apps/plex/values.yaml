@@ -39,9 +39,9 @@ app-template:
       primary: false
       ports:
         plex-external:
-        port: 32400
-        nodePort: 31400
-        protocol: HTTP
+          port: 32400
+          nodePort: 31400
+          protocol: HTTP
   ingress:
     main:
       enabled: true
