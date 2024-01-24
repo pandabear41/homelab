@@ -64,6 +64,11 @@ argo-cd:
         jqPathExpressions:
         - '.webhooks[]?.failurePolicy'
         - '.webhooks[]?.rules[]?.resources'
+      resource.customizations.ignoreDifferences:
+      - group: storage.k8s.io
+        jsonPointers:
+        - /spec/seLinuxMount
+        kind: CSIDriver
     ingress:
       enabled: true
       ingressClassName: nginx
