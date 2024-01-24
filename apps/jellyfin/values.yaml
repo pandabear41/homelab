@@ -55,18 +55,15 @@ app-template:
           port: 5055
           protocol: HTTP
     seed:
-      type: NodePort
+      type: ClusterIP
       controller: main
-      externalTrafficPolicy: Local
       primary: false
       ports:
         transmission-seed:
           port: 51413
-          nodePort: 31413
           protocol: TCP
         transmission-seed-udp:
           port: 51413
-          nodePort: 31413
           protocol: UDP
   ingress:
     main:

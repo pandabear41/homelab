@@ -8,3 +8,6 @@ ingress-nginx:
         enabled: true
   tcp:
     22: gitea/gitea-ssh:22
+    51413: jellyfin/jellyfin-seed:51413
+  udp:
+    51413: jellyfin/jellyfin-seed:51413
