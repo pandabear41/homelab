@@ -1,6 +1,10 @@
 kube-plex:
   claimToken: "claim-emmFriUH7R_hP2ExojsY"
   timezone: "America/Phoenix"
+  
+  kubePlex:
+    limits:
+      gpu.intel.com/i915: 1
 
   ingress:
     enabled: true
