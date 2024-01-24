@@ -33,15 +33,13 @@ app-template:
           port: 32400
           protocol: HTTP
     external:
-      type: NodePort
-      externalTrafficPolicy: Local
+      type: ClusterIP
       controller: main
       primary: false
       ports:
         plex-external:
           port: 32400
-          nodePort: 31400
-          protocol: HTTP
+          protocol: TCP
   ingress:
     main:
       enabled: true
