@@ -1,48 +1,48 @@
-ingress:
-  enabled: true
+pihole:
+  ingress:
+    enabled: true
 
-persistentVolumeClaim:
-  enabled: true
+  persistentVolumeClaim:
+    enabled: true
 
-serviceWeb:
-  loadBalancerIP: 10.10.10.230
-  annotations:
+  serviceWeb:
+    loadBalancerIP: 10.10.10.230
+    annotations:
+      "lbipam.cilium.io/sharing-key": "pihole-svc"
+    type: LoadBalancer
 
-    "lbipam.cilium.io/sharing-key": "pihole-svc"
-  type: LoadBalancer
+  serviceDns:
+    loadBalancerIP: 10.10.10.230
+    annotations:
+      "lbipam.cilium.io/sharing-key": "pihole-svc"
+    type: LoadBalancer
 
-serviceDns:
-  loadBalancerIP: 10.10.10.230
-  annotations:
-    "lbipam.cilium.io/sharing-key": "pihole-svc"
-  type: LoadBalancer
+  serviceDhcp:
+    loadBalancerIP: 10.10.10.230
+    annotations:
+      "lbipam.cilium.io/sharing-key": "pihole-svc"
+    type: LoadBalancer
 
-serviceDhcp:
-  loadBalancerIP: 10.10.10.230
-  annotations:
-    "lbipam.cilium.io/sharing-key": "pihole-svc"
-  type: LoadBalancer
+  podDnsConfig:
+    enabled: true
+    policy: "None"
+    nameservers:
+    - 127.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
 
-podDnsConfig:
-  enabled: true
-  policy: "None"
-  nameservers:
-  - 127.0.0.1
-  - 8.8.8.8
-  - 8.8.4.4
+  admin:
+    existingSecret: "pihole.admin" 
+    passwordKey: "PASSWORD"
 
-admin:
-  existingSecret: "pihole.admin" 
-  passwordKey: "PASSWORD"
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
 
-resources:
-  limits:
-    cpu: 200m
-    memory: 256Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
-
-extraEnvVars: {
-  DNSMASQ_USER: "root"
-}
+  extraEnvVars: {
+    DNSMASQ_USER: "root"
+  }
