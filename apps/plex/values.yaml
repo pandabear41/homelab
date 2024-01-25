@@ -61,6 +61,7 @@ app-template:
             repository: lscr.io/linuxserver/sabnzbd
             tag: 4.2.1
         organizr:
+          image:
             repository: docker.io/organizr/organizr
             tag: latest
   service:
@@ -303,3 +304,6 @@ app-template:
           sabnzbd:
             - path: /config
               subPath: sabnzbd/config
+          organizr:
+            - path: /config
+              subPath: organizr/config
