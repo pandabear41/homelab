@@ -264,11 +264,14 @@ app-template:
       advancedMounts:
         main:
           main:
-            - path: /config
+            - path: /configold
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
       advancedMounts:
+        main:
+          - path: /config
+            subPath: plex/config
         qbittorrent:
           - path: /config
             subPath: qbittorrent/config
