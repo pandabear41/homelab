@@ -12,5 +12,5 @@ renovate:
   existingSecret: renovate-secret
   envFrom:
     - secretRef:
-      name: renovate-env
+        name: renovate-env
 
