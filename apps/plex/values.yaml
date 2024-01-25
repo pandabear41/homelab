@@ -245,6 +245,8 @@ app-template:
               subPath: movies
             - path: /media/shows
               subPath: shows
+            - path: /media/anime
+              subPath: anime
           qbittorrent:
             - path: /downloads
               subPath: qbittorrent/downloads
@@ -258,6 +260,8 @@ app-template:
               subPath: qbittorrent/downloads
             - path: /shows
               subPath: shows
+            - path: /anime
+              subPath: anime
           nzbhydra2:
             - path: /downloads
               subPath: qbittorrent/downloads
