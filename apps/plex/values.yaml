@@ -43,7 +43,7 @@ app-template:
         sonarr:
           image:
             repository: lscr.io/linuxserver/sonarr
-            tag: 4.0.0
+            tag: 4.0.1
         overseerr:
           image:
             repository: lscr.io/linuxserver/overseerr
