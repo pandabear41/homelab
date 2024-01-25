@@ -251,12 +251,12 @@ app-template:
             - path: /downloads/incomplete
               subPath: qbittorrent/downloads/incomplete
           radarr:
-            - path: /downloads/complete
+            - path: /downloads
               subPath: qbittorrent/downloads
             - path: /movies
               subPath: movies
           sonarr:
-            - path: /downloads/complete
+            - path: /downloads
               subPath: qbittorrent/downloads
             - path: /shows
               subPath: shows
