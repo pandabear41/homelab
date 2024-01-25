@@ -13,5 +13,12 @@ ingress-nginx:
     22: gitea/gitea-ssh:22
     51413: jellyfin/jellyfin-seed:51413
     32400: plex/plex-external:32400
+    8324: plex/plex-extraports:8324
+    32469: plex/plex-extraports:32469
   udp:
     51413: jellyfin/jellyfin-seed:51413
+    32410: plex/plex-extraports:32410
+    32412: plex/plex-extraports:32412
+    32413: plex/plex-extraports:32413
+    32414: plex/plex-extraports:32414
+    1900: plex/plex-extraports:1900

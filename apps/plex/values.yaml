@@ -40,6 +40,35 @@ app-template:
         plex-external:
           port: 32400
           protocol: TCP
+    extraports:
+      type: ClusterIP
+      controller: main
+      primary: false
+      ports:
+        plex-dlna:
+          port: 1900
+          protocol: TCP
+        plex-dlna-udp:
+          port: 32469
+          protocol: UDP
+        plex-bonjour:
+          port: 5353
+          protocol: UDP
+        plex-roku:
+          port: 8324
+          protocol: TCP
+        plex-gdm-1:
+          port: 32410
+          protocol: UDP
+        plex-gdm-2:
+          port: 32412
+          protocol: UDP
+        plex-gdm-3:
+          port: 32413
+          protocol: UDP
+        plex-gdm-4:
+          port: 32414
+          protocol: UDP
   ingress:
     main:
       enabled: true
