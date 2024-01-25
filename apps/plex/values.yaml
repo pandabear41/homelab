@@ -92,12 +92,10 @@ app-template:
           port: 5076
           protocol: HTTP
         sabnzbd:
-          port: 8085
-          targetPort: 8080
+          port: 8080
           protocol: HTTP
         organizr:
-          port: 8082
-          targetPort: 80 
+          port: 80 
           protocol: HTTP
     external:
       type: ClusterIP
