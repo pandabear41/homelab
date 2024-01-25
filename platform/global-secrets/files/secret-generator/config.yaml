@@ -37,3 +37,9 @@
     - key: PAPERLESS_ADMIN_PASSWORD
       length: 32
       special: true
+
+- name: pihole.admin
+  data:
+    - key: PASSWORD
+      length: 32
+      special: true
