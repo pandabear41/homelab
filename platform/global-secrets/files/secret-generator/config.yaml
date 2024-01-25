@@ -38,8 +38,16 @@
       length: 32
       special: true
 
+# pihole
 - name: pihole.admin
   data:
     - key: PASSWORD
+      length: 32
+      special: true
+
+# ntfy
+- name: ntfy-relay.auth
+  data:
+    - key: password
       length: 32
       special: true
