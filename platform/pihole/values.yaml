@@ -8,17 +8,17 @@ pihole:
   serviceWeb:
     loadBalancerIP: 10.10.10.240
     annotations:
-      "lbipam.cilium.io/sharing-key": "pihole-svc"
+      "lbipam.cilium.io/sharing-key": "piholesvc"
     type: LoadBalancer
 
   serviceDns:
     annotations:
-      "lbipam.cilium.io/sharing-key": "pihole-svc"
+      "lbipam.cilium.io/sharing-key": "piholesvc"
     type: LoadBalancer
 
   serviceDhcp:
     annotations:
-      "lbipam.cilium.io/sharing-key": "pihole-svc"
+      "lbipam.cilium.io/sharing-key": "piholesvc"
     type: LoadBalancer
 
   podDnsConfig:
