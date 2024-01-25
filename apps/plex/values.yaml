@@ -92,7 +92,7 @@ app-template:
           port: 5076
           protocol: HTTP
         sabnzbd:
-          port: 8080
+          port: 8085
           protocol: HTTP
         organizr:
           port: 80 
