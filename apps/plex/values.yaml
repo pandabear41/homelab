@@ -32,31 +32,22 @@ app-template:
             tag: 4.6.3-libtorrentv1
           env:
             WEBUI_PORT: 8090
-            TZ: "America/Phoenix"
         prowlarr:
           image:
             repository: lscr.io/linuxserver/prowlarr
             tag: 1.12.2
-          env:
-            TZ: "America/Phoenix"
         radarr:
           image:
             repository: lscr.io/linuxserver/radarr
             tag: 5.2.6
-          env:
-            TZ: "America/Phoenix"
         sonarr:
           image:
             repository: lscr.io/linuxserver/sonarr
             tag: 4.0.0
-          env:
-            TZ: "America/Phoenix"
         overseerr:
           image:
             repository: lscr.io/linuxserver/overseerr
             tag: 1.33.2
-          env:
-            TZ: "America/Phoenix"
         # tautulli:
         #   image:
         #     repository: lscr.io/linuxserver/tautulli
