@@ -248,8 +248,6 @@ app-template:
           qbittorrent:
             - path: /downloads
               subPath: qbittorrent/downloads
-            - path: /downloads/incomplete
-              subPath: qbittorrent/downloads/incomplete
           radarr:
             - path: /downloads
               subPath: qbittorrent/downloads
@@ -266,8 +264,6 @@ app-template:
           sabnzbd:
             - path: /downloads
               subPath: qbittorrent/downloads
-            - path: /downloads/incomplete
-              subPath: qbittorrent/downloads/incomplete
     pms-config:
       accessMode: ReadWriteOnce
       size: 2Gi
