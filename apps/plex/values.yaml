@@ -33,22 +33,22 @@ app-template:
           env:
             WEBUI_PORT: 8090
             TZ: "America/Phoenix"
-        # prowlarr:
-        #   image:
-        #     repository: lscr.io/linuxserver/prowlarr
-        #     tag: 1.12.2
-        # radarr:
-        #   image:
-        #     repository: lscr.io/linuxserver/radarr
-        #     tag: 5.2.6
-        # sonarr:
-        #   image:
-        #     repository: lscr.io/linuxserver/sonarr
-        #     tag: 4.0.0
-        # overseerr:
-        #   image:
-        #     repository: lscr.io/linuxserver/overseerr
-        #     tag: 1.33.2
+        prowlarr:
+          image:
+            repository: lscr.io/linuxserver/prowlarr
+            tag: 1.12.2
+        radarr:
+          image:
+            repository: lscr.io/linuxserver/radarr
+            tag: 5.2.6
+        sonarr:
+          image:
+            repository: lscr.io/linuxserver/sonarr
+            tag: 4.0.0
+        overseerr:
+          image:
+            repository: lscr.io/linuxserver/overseerr
+            tag: 1.33.2
         # tautulli:
         #   image:
         #     repository: lscr.io/linuxserver/tautulli
@@ -73,18 +73,18 @@ app-template:
         qbittorrent:
           port: 8090
           protocol: HTTP
-        # prowlarr:
-        #   port: 9696
-        #   protocol: HTTP
-        # radarr:
-        #   port: 7878
-        #   protocol: HTTP
-        # sonarr:
-        #   port: 8989
-        #   protocol: HTTP
-        # overseerr:
-        #   port: 5055
-        #   protocol: HTTP
+        prowlarr:
+          port: 9696
+          protocol: HTTP
+        radarr:
+          port: 7878
+          protocol: HTTP
+        sonarr:
+          port: 8989
+          protocol: HTTP
+        overseerr:
+          port: 5055
+          protocol: HTTP
         # tautulli:
         #   port: 8181
         #   protocol: HTTP
@@ -155,34 +155,34 @@ app-template:
               service:
                 name: main
                 port: qbittorrent
-        # - host: &prowlarrHost prowlarr.pl4.me
-        #   paths:
-        #     - path: /
-        #       pathType: Prefix
-        #       service:
-        #         name: main
-        #         port: prowlarr
-        # - host: &radarrHost radarr.pl4.me
-        #   paths:
-        #     - path: /
-        #       pathType: Prefix
-        #       service:
-        #         name: main
-        #         port: radarr
-        # - host: &sonarrHost sonarr.pl4.me
-        #   paths:
-        #     - path: /
-        #       pathType: Prefix
-        #       service:
-        #         name: main
-        #         port: sonarr
-        # - host: &overseerrHost overseerr.pl4.me
-        #   paths:
-        #     - path: /
-        #       pathType: Prefix
-        #       service:
-        #         name: main
-        #         port: overseerr
+        - host: &prowlarrHost prowlarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: prowlarr
+        - host: &radarrHost radarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: radarr
+        - host: &sonarrHost sonarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: sonarr
+        - host: &overseerrHost overseerr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: overseerr
         # - host: &tautulliHost tautulli.pl4.me
         #   paths:
         #     - path: /
@@ -216,10 +216,10 @@ app-template:
           hosts:
             - *plexHost
             - *qbittorrentHost
-            # - *prowlarrHost
-            # - *radarrHost
-            # - *sonarrHost
-            # - *overseerrHost
+            - *prowlarrHost
+            - *radarrHost
+            - *sonarrHost
+            - *overseerrHost
             # - *tautulliHost
             # - *nzbhydra2Host
             # - *sabnzbdHost
@@ -250,16 +250,16 @@ app-template:
               subPath: qbittorrent/downloads
             - path: /downloads/incomplete
               subPath: qbittorrent/downloads/incomplete
-          # radarr:
-          #   - path: /downloads/complete
-          #     subPath: qbittorrent/downloads/complete
-          #   - path: /movies
-          #     subPath: movies
-          # sonarr:
-          #   - path: /downloads/complete
-          #     subPath: qbittorrent/downloads/complete
-          #   - path: /shows
-          #     subPath: shows
+          radarr:
+            - path: /downloads/complete
+              subPath: qbittorrent/downloads
+            - path: /movies
+              subPath: movies
+          sonarr:
+            - path: /downloads/complete
+              subPath: qbittorrent/downloads
+            - path: /shows
+              subPath: shows
     pms-config:
       accessMode: ReadWriteOnce
       size: 2Gi
@@ -275,3 +275,15 @@ app-template:
           qbittorrent:
             - path: /config
               subPath: qbittorrent/config
+          prowlarr:
+            - path: /config
+              subPath: prowlarr/config
+          radarr:
+            - path: /config
+              subPath: radarr/config
+          sonarr:
+            - path: /config
+              subPath: sonarr/config
+          overseerr:
+            - path: /app/config
+              subPath: jellyseerr/config
