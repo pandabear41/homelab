@@ -26,12 +26,77 @@ app-template:
             HOSTNAME: "plex.pl4.me"
             TZ: "America/Phoenix"
             ALLOWED_NETWORKS: "192.168.15.1/24"
+        qbittorrent:
+          image:
+            repository: lscr.io/linuxserver/qbittorrent
+            tag: 4.6.3
+          env:
+            WEBUI_PORT: 8090
+            TZ: "America/Phoenix"
+        # prowlarr:
+        #   image:
+        #     repository: lscr.io/linuxserver/prowlarr
+        #     tag: 1.12.2
+        # radarr:
+        #   image:
+        #     repository: lscr.io/linuxserver/radarr
+        #     tag: 5.2.6
+        # sonarr:
+        #   image:
+        #     repository: lscr.io/linuxserver/sonarr
+        #     tag: 4.0.0
+        # overseerr:
+        #   image:
+        #     repository: lscr.io/linuxserver/overseerr
+        #     tag: 1.33.2
+        # tautulli:
+        #   image:
+        #     repository: lscr.io/linuxserver/tautulli
+        #     tag: 2.13.4
+        # nzbhydra2:
+        #   image:
+        #     repository: lscr.io/linuxserver/nzbhydra2
+        #     tag: 5.3.7
+        # sabnzbd:
+        #   image:
+        #     repository: lscr.io/linuxserver/sabnzbd
+        #     tag: 4.2.1
+        # organizr:
+        #     repository: docker.io/organizr/organizr
+        #     tag: latest
   service:
     main:
       ports:
         http:
           port: 32400
           protocol: HTTP
+        qbittorrent:
+          port: 8090
+          protocol: HTTP
+        # prowlarr:
+        #   port: 9696
+        #   protocol: HTTP
+        # radarr:
+        #   port: 7878
+        #   protocol: HTTP
+        # sonarr:
+        #   port: 8989
+        #   protocol: HTTP
+        # overseerr:
+        #   port: 5055
+        #   protocol: HTTP
+        # tautulli:
+        #   port: 8181
+        #   protocol: HTTP
+        # nzbhydra2:
+        #   port: 5076
+        #   protocol: HTTP
+        # sabnzbd:
+        #   port: 8080
+        #   protocol: HTTP
+        # organizr:
+        #   port: 80
+        #   protocol: HTTP
     external:
       type: ClusterIP
       controller: main
@@ -83,11 +148,82 @@ app-template:
               service:
                 name: main
                 port: http
+        - host: &qbittorrentHost qbittorrent.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: qbittorrent
+        # - host: &prowlarrHost prowlarr.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: prowlarr
+        # - host: &radarrHost radarr.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: radarr
+        # - host: &sonarrHost sonarr.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: sonarr
+        # - host: &overseerrHost overseerr.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: overseerr
+        # - host: &tautulliHost tautulli.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: tautulli
+        # - host: &nzbhydra2Host nzbhydra2.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: nzbhydra2
+        # - host: &sabnzbdHost sabnzbd.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: sabnzbd                               
+        # - host: &organizrHost organizr.pl4.me
+        #   paths:
+        #     - path: /
+        #       pathType: Prefix
+        #       service:
+        #         name: main
+        #         port: organizr
       tls:
         - secretName: plex-tls-certificate
           hosts:
             - *plexHost
-
+            - *qbittorrentHost
+            # - *prowlarrHost
+            # - *radarrHost
+            # - *sonarrHost
+            # - *overseerrHost
+            # - *tautulliHost
+            # - *nzbhydra2Host
+            # - *sabnzbdHost
+            # - *organizrHost
   persistence:
     pms-transcodes:
       name: pms-transcodes
@@ -109,6 +245,19 @@ app-template:
               subPath: movies
             - path: /media/shows
               subPath: shows
+          qbittorrent:
+            - path: /downloads
+              subPath: qbittorrent/downloads
+          # radarr:
+          #   - path: /downloads/complete
+          #     subPath: qbittorrent/downloads/complete
+          #   - path: /movies
+          #     subPath: movies
+          # sonarr:
+          #   - path: /downloads/complete
+          #     subPath: qbittorrent/downloads/complete
+          #   - path: /shows
+          #     subPath: shows
     pms-config:
       accessMode: ReadWriteOnce
       size: 2Gi
@@ -116,3 +265,10 @@ app-template:
         main:
           main:
             - path: /config
+    data:
+      accessMode: ReadWriteOnce
+      size: 50Gi
+      advancedMounts:
+        qbittorrent:
+          - path: /config
+            subPath: qbittorrent/config
