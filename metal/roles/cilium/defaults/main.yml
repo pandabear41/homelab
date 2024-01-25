@@ -1,8 +1,12 @@
 cilium_repo_url: https://helm.cilium.io
-cilium_version: latest # TODO switch to stable release
+cilium_version: 1.15.0-rc.1 # TODO switch to stable release
 cilium_namespace: kube-system
 cilium_values:
+  image:
+    tag: "latest"
   operator:
+    image:
+      tag: "latest"
     replicas: 1
   kubeProxyReplacement: true
   k8sClientRateLimit:
