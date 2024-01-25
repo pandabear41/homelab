@@ -12,13 +12,11 @@ pihole:
     type: LoadBalancer
 
   serviceDns:
-    loadBalancerIP: 10.10.10.230
     annotations:
       "lbipam.cilium.io/sharing-key": "pihole-svc"
     type: LoadBalancer
 
   serviceDhcp:
-    loadBalancerIP: 10.10.10.230
     annotations:
       "lbipam.cilium.io/sharing-key": "pihole-svc"
     type: LoadBalancer
