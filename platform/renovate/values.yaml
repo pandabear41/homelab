@@ -10,3 +10,6 @@ renovate:
         "autodiscover": true
       }
   existingSecret: renovate-secret
+  envFrom:
+    - secretRef:
+      name: renovate-env
