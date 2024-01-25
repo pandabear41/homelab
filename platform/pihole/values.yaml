@@ -6,7 +6,7 @@ pihole:
     enabled: true
 
   serviceWeb:
-    loadBalancerIP: 10.10.10.230
+    loadBalancerIP: 10.10.10.240
     annotations:
       "lbipam.cilium.io/sharing-key": "pihole-svc"
     type: LoadBalancer
