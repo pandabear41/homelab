@@ -1,4 +1,7 @@
 renovate:
+  envFrom:
+  - secretRef:
+    name: renovate-env
   cronjob:
     schedule: '0 * * * *'  # Hourly
   renovate:
@@ -10,6 +13,5 @@ renovate:
         "autodiscover": true
       }
   existingSecret: renovate-secret
-  envFrom:
-    - secretRef:
-      name: renovate-env
+
+
