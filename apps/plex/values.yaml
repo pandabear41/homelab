@@ -52,14 +52,6 @@ app-template:
           image:
             repository: lscr.io/linuxserver/tautulli
             tag: 2.13.4
-        nzbhydra2:
-          image:
-            repository: lscr.io/linuxserver/nzbhydra2
-            tag: 5.3.7
-        sabnzbd:
-          image:
-            repository: lscr.io/linuxserver/sabnzbd
-            tag: 4.2.1
         organizr:
           image:
             repository: docker.io/organizr/organizr
@@ -87,12 +79,6 @@ app-template:
           protocol: HTTP
         tautulli:
           port: 8181
-          protocol: HTTP
-        nzbhydra2:
-          port: 5076
-          protocol: HTTP
-        sabnzbd:
-          port: 8085
           protocol: HTTP
         organizr:
           port: 80 
@@ -189,21 +175,7 @@ app-template:
               pathType: Prefix
               service:
                 name: main
-                port: tautulli
-        - host: &nzbhydra2Host nzbhydra2.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: nzbhydra2
-        - host: &sabnzbdHost sabnzbd.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: sabnzbd                               
+                port: tautulli                            
         - host: &organizrHost organizr.pl4.me
           paths:
             - path: /
@@ -221,8 +193,6 @@ app-template:
             - *sonarrHost
             - *overseerrHost
             - *tautulliHost
-            - *nzbhydra2Host
-            - *sabnzbdHost
             - *organizrHost
   persistence:
     pms-transcodes:
@@ -262,12 +232,6 @@ app-template:
               subPath: shows
             - path: /anime
               subPath: anime
-          nzbhydra2:
-            - path: /downloads
-              subPath: qbittorrent/downloads
-          sabnzbd:
-            - path: /downloads
-              subPath: qbittorrent/downloads
     pms-config:
       accessMode: ReadWriteOnce
       size: 2Gi
@@ -298,12 +262,6 @@ app-template:
           tautulli:
             - path: /config
               subPath: tautulli/config
-          nzbhydra2:
-            - path: /config
-              subPath: nzbhydra2/config
-          sabnzbd:
-            - path: /config
-              subPath: sabnzbd/config
           organizr:
             - path: /config
               subPath: organizr/config
