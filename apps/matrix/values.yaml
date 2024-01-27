@@ -45,6 +45,8 @@ dendrite:
     logs:
       capacity: 1Gi
     media:
+      annotations:
+        k8up.io/backup: true
       capacity: 5Gi
   nats:
     enabled: true
