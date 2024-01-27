@@ -2,8 +2,8 @@
 
 VALUES="values.yaml"
 
-# kubectl get ingress argocd-server --namespace argocd \
-#     || VALUES="values-seed.yaml"
+kubectl get ingress argocd-server --namespace argocd \
+    || VALUES="values-seed.yaml"
 
 helm template \
     --dependency-update \

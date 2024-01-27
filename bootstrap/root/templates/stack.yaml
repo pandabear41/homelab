@@ -38,4 +38,46 @@ spec:
           - CreateNamespace=true
           - ApplyOutOfSyncOnly=true
           - ServerSideApply=true
+      ignoreDifferences:
+        # ignore kind/version injection in stateful set volume claims
+        - group: apps
+          kind: StatefulSet
+          jqPathExpressions:
+            - '.spec.volumeClaimTemplates[]?.apiVersion'
+            - '.spec.volumeClaimTemplates[]?.kind'
+        - group: storage.k8s.io
+          kind: CSIDriver
+          jqPathExpressions:
+            - '.spec.seLinuxMount'
+        # Ignore gpu annotations
+        - group: deviceplugin.intel.com
+          kind: GpuDevicePlugin
+          jqPathExpressions:
+            - '.metadata.annotations'
+        # lets not override CRD webhook caBundle
+        - group: "apiextensions.k8s.io"
+          kind: CustomResourceDefinition
+          jsonPointers:
+            - /spec/conversion/webhook/clientConfig/caBundle
+        # ignore external-secrets modifying spec
+        - group: external-secrets.io
+          kind: ExternalSecret
+          jqPathExpressions:
+            - '.spec.data[].remoteRef.conversionStrategy'
+            - '.spec.data[].remoteRef.decodingStrategy'
+            - '.spec.data[].remoteRef.metadataPolicy'
+            - '.spec.dataFrom[].extract.conversionStrategy'
+            - '.spec.dataFrom[].extract.decodingStrategy'
+            - '.spec.dataFrom[].extract.metadataPolicy'
+        # ignore cert duration
+        - group: cert-manager.io
+          kind: Certificate
+          jqPathExpressions:
+            - '.spec.duration'
+        # ignore pv genrated stuff
+        - kind: PersistentVolume
+          jsonPointers:
+            - /spec/claimRef/resourceVersion
+            - /spec/claimRef/uid
+            - /status/lastPhaseTransitionTime
 {{- end }}

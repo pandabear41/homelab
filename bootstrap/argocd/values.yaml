@@ -1,6 +1,3 @@
-# global:
-#   image:
-#     tag: v2.9.3
 argo-cd:
   server:
     containerPorts:
@@ -78,24 +75,15 @@ argo-cd:
         - secretName: argocd-tls-certificate
           hosts:
             - *host
-    metrics: 
+    metrics: &metrics
       enabled: true
       serviceMonitor:
         enabled: true
   dex:
     enabled: false
   controller:
-    metrics: 
-      enabled: true
-      serviceMonitor:
-        enabled: true
+    metrics: *metrics
   repoServer:
-    metrics: 
-      enabled: true
-      serviceMonitor:
-        enabled: true
+    metrics: *metrics
   redis:
-    metrics: 
-      enabled: true
-      serviceMonitor:
-        enabled: true
+    metrics: *metrics
