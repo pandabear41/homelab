@@ -4,7 +4,7 @@ metadata:
   name: schedule-backup
 spec:
   backup:
-    schedule: '0 8 * * *'
+    schedule: '*/5 * * * *'
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
   check:
