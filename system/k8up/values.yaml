@@ -4,9 +4,9 @@ k8up:
       - name: BACKUP_GLOBAL_OPERATOR_NAMESPACE
         value: "k8up"
       - name: BACKUP_GLOBAL_FAILED_JOBS_HISTORY_LIMIT
-        value: "2"
+        value: "1"
       - name: BACKUP_GLOBAL_SUCCESSFUL_JOBS_HISTORY_LIMIT
-        value: "2"
+        value: "1"
       - name: BACKUP_GLOBALS3ENDPOINT
         value: "https://s3.us-west-000.backblazeb2.com"
       - name: BACKUP_GLOBALS3BUCKET
