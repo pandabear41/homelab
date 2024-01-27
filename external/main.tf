@@ -17,3 +17,9 @@ module "ntfy" {
   source = "./modules/ntfy"
   auth   = var.ntfy
 }
+
+module "onepassword" {
+  source                  = "./modules/onepassword"
+  onepassword_credentials = var.onepassword_credentials
+  onepassword_token       = var.onepassword_token
+}

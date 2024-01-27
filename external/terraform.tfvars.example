@@ -16,3 +16,6 @@ ntfy = {
   # Optional, required if the ntfy instance has access control enabled
   password = ""
 }
+
+onepassword_credentials = "foocreds"
+onepassword_token = "footoken"

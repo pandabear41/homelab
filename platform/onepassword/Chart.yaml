@@ -1,7 +1,10 @@
 apiVersion: v2
-name: external-secrets
+name: onepassword
 version: 0.0.0
 dependencies:
+  - name: connect
+    version: 1.14.0
+    repository: https://1password.github.io/connect-helm-charts
   - name: external-secrets
     version: 0.9.11
     repository: https://charts.external-secrets.io
