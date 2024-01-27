@@ -7,3 +7,10 @@ spec:
     schedule: '0 8 * * *'
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
+  check:
+    schedule: '@weekly-random'
+  prune:
+    schedule: '@weekly-random'
+    retention:
+      keepLast: 5
+      keepDaily: 14
