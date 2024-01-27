@@ -236,7 +236,7 @@ app-template:
       accessMode: ReadWriteOnce
       size: 2Gi
       annotations:
-        "k8up.io/backup": true
+        k8up.io/backup: "true"
       advancedMounts:
         main:
           main:
@@ -245,7 +245,7 @@ app-template:
       accessMode: ReadWriteOnce
       size: 50Gi
       annotations:
-        "k8up.io/backup": true
+        k8up.io/backup: "true"
       advancedMounts:
         main:
           qbittorrent:
