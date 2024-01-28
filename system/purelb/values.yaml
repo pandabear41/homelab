@@ -5,6 +5,6 @@ purelb:
     spec:
       local:
         v4pools:
-          - subnet: 10.10.10.1/24
+          - subnet: 10.10.10.224/27
             pool: 10.10.10.225-10.10.10.254
             aggregation: default
