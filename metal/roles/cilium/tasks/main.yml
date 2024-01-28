@@ -4,7 +4,7 @@
     state: absent
     api_version: cilium.io/v2alpha1
     kind: CiliumL2AnnouncementPolicy
-    namespace: {{ cilium_namespace }}
+    namespace: "{{ cilium_namespace }}"
     name: default
 
 - name: Remove Cilium resources - CiliumLoadBalancerIPPool
@@ -12,7 +12,7 @@
     state: absent
     api_version: v2alpha1
     kind: CiliumLoadBalancerIPPool
-    namespace: {{ cilium_namespace }}
+    namespace: "{{ cilium_namespace }}"
     name: default
 
 - name: uninstall Cilium
