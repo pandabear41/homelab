@@ -41,9 +41,9 @@ pod-gateway:
       envFrom:
         - secretRef:
             name: wireguard-config
-      securityContext:
-        capabilities:
-          add: [ "NET_ADMIN" ]
+      # securityContext:
+      #   capabilities:
+      #     add: [ "NET_ADMIN" ]
       # networkPolicy:
       #   enabled: true
       #   egress:
