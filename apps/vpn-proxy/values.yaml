@@ -16,9 +16,9 @@ app-template:
             startup:
               enabled: false
 
-      pod:
-        annotations:
-          setGateway: "true"
+      # pod:
+      #   annotations:
+      #     setGateway: "true"
 
   service:
     main:
