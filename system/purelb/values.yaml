@@ -1,0 +1,10 @@
+purelb:
+  serviceGroup:
+    name: "default"
+    create: true
+    spec:
+      local:
+        v4pools:
+          - subnet: 10.10.10.1/24
+            pool: 10.10.10.225-10.10.10.254
+            aggregation: default
