@@ -41,20 +41,23 @@ pod-gateway:
       envFrom:
         - secretRef:
             name: wireguard-config
-      # securityContext:
-      #   capabilities:
-      #     add: [ "NET_ADMIN" ]
-      # networkPolicy:
-      #   enabled: true
-      #   egress:
-      #     - to:
-      #         - ipBlock:
-      #             cidr: 0.0.0.0/0
-      #       ports:
-      #         - port: 1443
-      #           protocol: UDP
-      #     - to:
-      #         - namespaceSelector: {}
+      securityContext:
+        capabilities:
+          add: [ "NET_ADMIN" ]
+      networkPolicy:
+        enabled: true
+        egress:
+          - to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+            ports:
+              - port: 1443
+                protocol: UDP
+          - to:
+              - namespaceSelector: {}
+          - to:
+            - ipBlock:
+                cidr: 10.0.0.0/8
       # livenessProbe:
       #   exec:
       #     command:
