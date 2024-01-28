@@ -23,20 +23,23 @@ pod-gateway:
     #         type: udp
     #       - port: 20294
     #         type: tcp
-  # addons:
-  #   vpn:
-  #     enabled: true
-  #     type: gluetun
-  #     gluetun:
-  #       image:
-  #         repository: docker.io/qmcgaw/gluetun
-  #         tag: v3.37.0
-  #     envFrom:
-  #       - secretRef:
-  #           name: wireguard-config
-  #     securityContext:
-  #       capabilities:
-  #         add: [ "NET_ADMIN" ]
+  addons:
+    vpn:
+      enabled: true
+      type: gluetun
+      gluetun:
+        image:
+          repository: docker.io/qmcgaw/gluetun
+          tag: v3.37.0
+      env:
+        - name: WIREGUARD_MTU
+          value: "1390"
+      envFrom:
+        - secretRef:
+            name: wireguard-config
+      securityContext:
+        capabilities:
+          add: [ "NET_ADMIN" ]
       # networkPolicy:
       #   enabled: true
       #   egress:
