@@ -61,7 +61,7 @@ pod-gateway:
           command:
             - sh
             - -c
-            - if [ $(wget -q -O- http://ip-api.com/line/?fields=countryCode) == 'NL' ]; then exit 0; else exit $?; fi
+            - if [ $(wget -q -O- http://ip-api.com/line/?fields=countryCode) == 'RO' ]; then exit 0; else exit $?; fi
         initialDelaySeconds: 30
         periodSeconds: 300
         failureThreshold: 1
