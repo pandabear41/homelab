@@ -36,6 +36,8 @@ pod-gateway:
           value: "1390"
         - name: FIREWALL
           value: "off"
+        - name: DOT
+          value: "off"
       envFrom:
         - secretRef:
             name: wireguard-config
