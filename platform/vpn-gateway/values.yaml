@@ -58,9 +58,6 @@ pod-gateway:
                 protocol: UDP
           - to:
             - namespaceSelector: {}
-          - to:
-            - ipBlock:
-                cidr: 10.0.0.0/8
       livenessProbe:
         exec:
           command:
