@@ -1,0 +1,8 @@
+- name: Install purelb
+  kubernetes.core.helm:
+    name: purelb
+    chart_ref: purelb
+    chart_repo_url: "{{ purelb_repo_url }}"
+    chart_version: "{{ purelb_version }}"
+    release_namespace: "{{ purelb_namespace }}"
+    values: "{{ purelb_values }}"

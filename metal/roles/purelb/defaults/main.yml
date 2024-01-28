@@ -1,0 +1,13 @@
+purelb_repo_url: https://gitlab.com/api/v4/projects/20400619/packages/helm/stable
+purelb_version: 0.7.1
+purelb_namespace: purelb
+purelb_values:
+  serviceGroup:
+    name: "default"
+    create: true
+    spec:
+      local:
+        v4pools:
+          - subnet: 10.10.10.1/24
+            pool: 10.10.10.225-10.10.10.254
+            aggregation: default
