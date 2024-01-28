@@ -16,5 +16,5 @@ k3s_server_config:
   disable-network-policy: true
   flannel-backend: none
   secrets-encryption: true
-  cluster-cidr: "10.42.0.0/16"
-  service-cidr: "10.43.0.0/16"
+  # cluster-cidr: "10.42.0.0/16"
+  # service-cidr: "10.43.0.0/16"
