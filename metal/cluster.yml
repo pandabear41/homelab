@@ -5,7 +5,3 @@
     - k3s
     - automatic_upgrade
 
-- name: Install Kubernetes addons
-  hosts: localhost
-  roles:
-    - purelb
