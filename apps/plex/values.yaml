@@ -128,32 +128,52 @@ plex:
             - *host
 
 ######################
-# qbittorrent        #
+# transmission       #
 ######################
 
-qbittorrent:
+transmission:
   global:
-    nameOverride: qbittorrent
+    nameOverride: transmission
 
   controllers:
     main:
       strategy: RollingUpdate
 
       pod:
-        hostname: qbittorrent
+        hostname: transmission
         annotations:
           setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
 
+      initContainers:
+        01-init-themes:
+          name: theme-provider
+          image:
+            repository: registry.gitlab.com/antoncuranz/transmission-themes
+            tag: latest
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Copying themes..."
+              cp -R /opt/transmission-ui/* /themes
+
       containers:
         main:
           image:
-            repository: docker.io/linuxserver/qbittorrent
-            tag: 4.6.3-libtorrentv1
+            repository: docker.io/linuxserver/transmission
+            tag: 4.0.5
           env:
             TZ: "America/Phoenix"
+            TRANSMISSION__BLOCKLIST_URL: "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz"
+            TRANSMISSION__DOWNLOAD_DIR: "/downloads"
+            TRANSMISSION__RPC_PORT: &port 9091
+            TRANSMISSION__PEER_PORT: 20294
+            TRANSMISSION__MESSAGE_LEVEL: 3
+            TRANSMISSION_WEB_HOME: "/opt/transmission-ui/transmissionic"
           
   persistence:
     config:
@@ -169,12 +189,22 @@ qbittorrent:
         main:
           main:
             - path: /downloads
-              subPath: qbittorrent/downloads
+              subPath: transmission/downloads
+    themes:
+      enabled: true
+      type: emptyDir
+      advancedMounts:
+        main:
+          01-init-themes:
+            - path: /themes
+          main:
+            - path: /opt/transmission-ui
+
   service:
     main:
       ports:
         http:
-          port: 8080
+          port: 9091
           protocol: HTTP
 
   ingress:
@@ -184,7 +214,7 @@ qbittorrent:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: &host qbittorrent.pl4.me
+        - host: &host transmission.pl4.me
           paths:
             - path: /
               pathType: Prefix
@@ -192,7 +222,7 @@ qbittorrent:
                 name: main
                 port: http    
       tls:
-        - secretName: qbittorrent-tls-certificate
+        - secretName: transmission-tls-certificate
           hosts:
             - *host
 
@@ -300,7 +330,7 @@ radarr:
         main:
           main:
             - path: /downloads
-              subPath: qbittorrent/downloads
+              subPath: transmission/downloads/complete
             - path: /movies
               subPath: movies
 
@@ -372,7 +402,7 @@ sonarr:
         main:
           main:
             - path: /downloads
-              subPath: qbittorrent/downloads
+              subPath: transmission/downloads/complete
             - path: /movies
               subPath: movies
 
@@ -444,7 +474,7 @@ sonarr:
         main:
           main:
             - path: /downloads
-              subPath: qbittorrent/downloads
+              subPath: transmission/downloads/complete
             - path: /shows
               subPath: shows
             - path: /anime
