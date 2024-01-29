@@ -232,7 +232,7 @@ app-template:
               subPath: shows
             - path: /anime
               subPath: anime
-    pms-config22:
+    pms-config:
       accessMode: ReadWriteOnce
       size: 2Gi
       advancedMounts:
