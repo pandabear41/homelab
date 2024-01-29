@@ -147,6 +147,21 @@ qbittorrent:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
 
+      initContainers:
+        01-get-blacklists:
+          name: get-blacklists
+          image:
+            repository: alpine
+            tag: 3.19.1
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Getting latest blacklists"
+              apk add --no-cache wget
+              wget -P /config/ https://github.com/waelisa/Best-blocklist/raw/main/wael.list.p2p
+
       containers:
         main:
           image:
