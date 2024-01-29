@@ -232,10 +232,9 @@ app-template:
               subPath: shows
             - path: /anime
               subPath: anime
-    pms-config:
+    pms-config-bad:
       accessMode: ReadWriteOnce
       size: 2Gi
-      nameOverride: plex-pms-config
       advancedMounts:
         main:
           main:
