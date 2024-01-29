@@ -40,19 +40,16 @@ plex:
 
   persistence:
     transcode:
-      enabled: true
       name: transcode
       type: emptyDir
       medium: Memory
       sizeLimit: 1Gi
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 50Gi
       annotations:
         'k8up.io/backup': 'true'
     media:
-      enabled: true
       existingClaim: plex-nfs-media
       advancedMounts:
         main:
@@ -157,13 +154,11 @@ qbittorrent:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
         'k8up.io/backup': 'true'
     media:
-      enabled: true
       existingClaim: plex-nfs-media
       advancedMounts:
         main:
@@ -226,7 +221,6 @@ prowlarr:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
@@ -288,13 +282,11 @@ radarr:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
         'k8up.io/backup': 'true'
     media:
-      enabled: true
       existingClaim: plex-nfs-media
       advancedMounts:
         main:
@@ -360,13 +352,11 @@ sonarr:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
         'k8up.io/backup': 'true'
     media:
-      enabled: true
       existingClaim: plex-nfs-media
       advancedMounts:
         main:
@@ -432,13 +422,11 @@ sonarr:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
         'k8up.io/backup': 'true'
     media:
-      enabled: true
       existingClaim: plex-nfs-media
       advancedMounts:
         main:
@@ -506,7 +494,6 @@ overseerr:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
@@ -566,7 +553,6 @@ tautulli:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 1Gi
       annotations:
@@ -626,7 +612,6 @@ organizr:
           
   persistence:
     config:
-      enabled: true
       accessMode: ReadWriteOnce
       size: 250Mi
       annotations:
