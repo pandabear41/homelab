@@ -1,25 +1,19 @@
 ---
-apiVersion: v1
-kind: PersistentVolume
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
-  name: plex-nfs-media
-spec:
-  capacity:
-    storage: 500Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: plex-nfs-media
-  
-  mountOptions:
-    - nfsvers=4
-  csi:
-    driver: nfs.csi.k8s.io
-    readOnly: false
-    volumeHandle: plex-nfs-media
-    volumeAttributes:
-      server: 192.168.16.30
-      share: /plex
+  name: plex-nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.16.30
+  share: /plex
+  # csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
+  # csi.storage.k8s.io/provisioner-secret-name: "mount-options"
+  # csi.storage.k8s.io/provisioner-secret-namespace: "default"
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+mountOptions:
+  - nfsvers=4.1
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -33,5 +27,4 @@ spec:
   resources:
     requests:
       storage: 500Gi
-  volumeName: plex-nfs-media
   storageClassName: plex-nfs-media
