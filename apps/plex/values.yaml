@@ -38,7 +38,7 @@ plex:
             TZ: "America/Phoenix"
             ALLOWED_NETWORKS: "192.168.15.1/24"
 
-  persistance:
+  persistence:
     transcode:
       enabled: true
       name: transcode
@@ -155,7 +155,7 @@ qbittorrent:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -224,7 +224,7 @@ prowlarr:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -286,7 +286,7 @@ radarr:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -358,7 +358,7 @@ sonarr:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -430,7 +430,7 @@ sonarr:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -504,7 +504,7 @@ overseerr:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -564,7 +564,7 @@ tautulli:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
@@ -624,7 +624,7 @@ organizr:
           env:
             TZ: "America/Phoenix"
           
-  persistance:
+  persistence:
     config:
       enabled: true
       accessMode: ReadWriteOnce
