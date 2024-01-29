@@ -147,21 +147,6 @@ qbittorrent:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
 
-      initContainers:
-        01-get-blacklists:
-          name: get-blacklists
-          image:
-            repository: ubuntu
-            tag: 22.04
-          command:
-            - sh
-          args:
-            - -c
-            - |
-              echo "Getting latest blacklists"
-              apt-get update && apt-get install -y wget
-              wget -P /config/ https://github.com/waelisa/Best-blocklist/raw/main/wael.list.p2p
-
       containers:
         main:
           image:
@@ -169,6 +154,14 @@ qbittorrent:
             tag: 4.6.3-libtorrentv1
           env:
             TZ: "America/Phoenix"
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Getting latest blacklists"
+              apk add --no-cache wget
+              wget -P /config/ https://github.com/waelisa/Best-blocklist/raw/main/wael.list.p2p
           
   persistence:
     config:
