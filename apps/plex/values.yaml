@@ -16,24 +16,27 @@ plex:
   controllers:
     main:
       strategy: Recreate
-      image:
-        repository: docker.io/plexinc/pms-docker
-        tag: latest
-      securityContext:
-        privileged: true
-        capabilities:
-          add:
-            - SYS_ADMIN
-      resources:
-        requests:
-          gpu.intel.com/i915: 1
-        limits:
-          gpu.intel.com/i915: 1
-      env:
-        PLEX_CLAIM: "claim-tU7s_C4GXMvcU5wzUMbx"
-        HOSTNAME: "plex.pl4.me"
-        TZ: "America/Phoenix"
-        ALLOWED_NETWORKS: "192.168.15.1/24"
+
+      containers:
+        main:
+          image:
+            repository: docker.io/plexinc/pms-docker
+            tag: latest
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+          resources:
+            requests:
+              gpu.intel.com/i915: 1
+            limits:
+              gpu.intel.com/i915: 1
+          env:
+            PLEX_CLAIM: "claim-tU7s_C4GXMvcU5wzUMbx"
+            HOSTNAME: "plex.pl4.me"
+            TZ: "America/Phoenix"
+            ALLOWED_NETWORKS: "192.168.15.1/24"
 
   persistance:
     transcode:
