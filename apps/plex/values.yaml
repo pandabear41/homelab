@@ -235,8 +235,7 @@ app-template:
     pms-config:
       accessMode: ReadWriteOnce
       size: 2Gi
-      annotations:
-        k8up.io/backup: "true"
+      nameOverride: plex-pms-config
       advancedMounts:
         main:
           main:
@@ -244,8 +243,6 @@ app-template:
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
-      annotations:
-        k8up.io/backup: "true"
       advancedMounts:
         main:
           qbittorrent:
