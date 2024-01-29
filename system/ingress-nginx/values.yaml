@@ -1,9 +1,10 @@
 ingress-nginx:
   controller:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 5
+    # disable for now.
+    # autoscaling:
+    #   enabled: true
+    #   minReplicas: 2
+    #   maxReplicas: 5
     service:
       annotations:
         "lbipam.cilium.io/ips": "10.10.10.225" 
