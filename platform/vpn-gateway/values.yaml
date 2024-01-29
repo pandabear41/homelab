@@ -22,7 +22,7 @@ pod-gateway:
       tag: v3.10.0
     publicPorts:
       - IP: 10
-        hostname: transmission
+        hostname: qbittorrent
         ports:
           - port: 20294
             type: udp
