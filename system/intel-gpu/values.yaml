@@ -1,3 +1,4 @@
 intel-gpu:
+  nodeFeatureRule: true
   intel-device-plugins-gpu:
     nodeFeatureRule: true
