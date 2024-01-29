@@ -1,87 +1,68 @@
-app-template:
+
+######################
+# Plex               #
+######################
+plex:
   defaultPodOptions:
     securityContext:
       fsGroup: 1000
+      fsGroupChangePolicy: OnRootMismatch
       supplementalGroups:
-        - 105
+        - 39  # video
+        - 105  # render
+  global:
+    nameOverride: plex
+
   controllers:
     main:
-      containers:
+      strategy: Recreate
+      image:
+        repository: docker.io/plexinc/pms-docker
+        tag: latest
+      securityContext:
+        privileged: true
+        capabilities:
+          add:
+            - SYS_ADMIN
+      resources:
+        requests:
+          gpu.intel.com/i915: 1
+        limits:
+          gpu.intel.com/i915: 1
+      env:
+        PLEX_CLAIM: "claim-tU7s_C4GXMvcU5wzUMbx"
+        HOSTNAME: "plex.pl4.me"
+        TZ: "America/Phoenix"
+        ALLOWED_NETWORKS: "192.168.15.1/24"
+
+  persistance:
+    transcode:
+      name: transcode
+      type: emptyDir
+      medium: Memory
+      sizeLimit: 1Gi
+    config:
+      accessMode: ReadWriteOnce
+      size: 50Gi
+      annotations:
+        'k8up.io/backup': 'true'
+    media:
+      existingClaim: plex-nfs-media
+      advancedMounts:
         main:
-          image:
-            repository: docker.io/plexinc/pms-docker
-            tag: latest
-          securityContext:
-            privileged: true
-            capabilities:
-              add:
-                - SYS_ADMIN
-          resources:
-            requests:
-              gpu.intel.com/i915: 1
-            limits:
-              gpu.intel.com/i915: 1
-          env:
-            PLEX_CLAIM: "claim-tU7s_C4GXMvcU5wzUMbx"
-            HOSTNAME: "plex.pl4.me"
-            TZ: "America/Phoenix"
-            ALLOWED_NETWORKS: "192.168.15.1/24"
-        qbittorrent:
-          image:
-            repository: docker.io/linuxserver/qbittorrent
-            tag: 4.6.3-libtorrentv1
-          env:
-            WEBUI_PORT: 8090
-        prowlarr:
-          image:
-            repository: lscr.io/linuxserver/prowlarr
-            tag: 1.12.2
-        radarr:
-          image:
-            repository: lscr.io/linuxserver/radarr
-            tag: 5.2.6
-        sonarr:
-          image:
-            repository: lscr.io/linuxserver/sonarr
-            tag: 4.0.1
-        overseerr:
-          image:
-            repository: lscr.io/linuxserver/overseerr
-            tag: 1.33.2
-        tautulli:
-          image:
-            repository: lscr.io/linuxserver/tautulli
-            tag: 2.13.4
-        organizr:
-          image:
-            repository: docker.io/organizr/organizr
-            tag: latest
+          main:
+            - path: /media/movies
+              subPath: movies
+            - path: /media/shows
+              subPath: shows
+            - path: /media/anime
+              subPath: anime
+
   service:
     main:
       ports:
         http:
           port: 32400
-          protocol: HTTP
-        qbittorrent:
-          port: 8090
-          protocol: HTTP
-        prowlarr:
-          port: 9696
-          protocol: HTTP
-        radarr:
-          port: 7878
-          protocol: HTTP
-        sonarr:
-          port: 8989
-          protocol: HTTP
-        overseerr:
-          port: 5055
-          protocol: HTTP
-        tautulli:
-          port: 8181
-          protocol: HTTP
-        organizr:
-          port: 80 
           protocol: HTTP
     external:
       type: ClusterIP
@@ -120,6 +101,7 @@ app-template:
         plex-gdm-4:
           port: 32414
           protocol: UDP
+
   ingress:
     main:
       enabled: true
@@ -127,141 +109,533 @@ app-template:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: &plexHost plex.pl4.me
+        - host: &host plex.pl4.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 name: main
-                port: http
-        - host: &qbittorrentHost qbittorrent.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: qbittorrent
-        - host: &prowlarrHost prowlarr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: prowlarr
-        - host: &radarrHost radarr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: radarr
-        - host: &sonarrHost sonarr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: sonarr
-        - host: &overseerrHost overseerr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: overseerr
-        - host: &tautulliHost tautulli.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: tautulli                            
-        - host: &organizrHost organizr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: organizr
+                port: http    
       tls:
         - secretName: plex-tls-certificate
           hosts:
-            - *plexHost
-            - *qbittorrentHost
-            - *prowlarrHost
-            - *radarrHost
-            - *sonarrHost
-            - *overseerrHost
-            - *tautulliHost
-            - *organizrHost
-  persistence:
-    pms-transcodes:
-      name: pms-transcodes
-      type: emptyDir
-      medium: Memory
-      sizeLimit: 1Gi
-      advancedMounts:
+            - *host
+
+######################
+# qbittorrent        #
+######################
+
+qbittorrent:
+  global:
+    nameOverride: qbittorrent
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: qbittorrent
+        annotations:
+          setGateway: "true"
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
         main:
-          main:
-            - path: /transcode
-    media:
+          image:
+            repository: docker.io/linuxserver/qbittorrent
+            tag: 4.6.3-libtorrentv1
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
       accessMode: ReadWriteOnce
-      size: 500Gi
-      storageClass: plex-nfs-csi
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+    media:
+      existingClaim: plex-nfs-media
       advancedMounts:
         main:
           main:
-            - path: /media/movies
-              subPath: movies
-            - path: /media/shows
-              subPath: shows
-            - path: /media/anime
-              subPath: anime
-          qbittorrent:
             - path: /downloads
               subPath: qbittorrent/downloads
-          radarr:
+  service:
+    main:
+      ports:
+        http:
+          port: 8080
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host qbittorrent.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: qbittorrent-tls-certificate
+          hosts:
+            - *host
+
+######################
+# prowlarr           #
+######################
+
+prowlarr:
+  global:
+    nameOverride: prowlarr
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: prowlarr
+        annotations:
+          setGateway: "true"
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
+        main:
+          image:
+            repository: lscr.io/linuxserver/prowlarr
+            tag: 1.12.2
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
+      accessMode: ReadWriteOnce
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+
+  service:
+    main:
+      ports:
+        http:
+          port: 9696
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host prowlarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: prowlarr-tls-certificate
+          hosts:
+            - *host
+
+######################
+# radarr             #
+######################
+
+radarr:
+  global:
+    nameOverride: radarr
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: radarr
+        annotations:
+          setGateway: "true"
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
+        main:
+          image:
+            repository: lscr.io/linuxserver/radarr
+            tag: 5.2.6
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
+      accessMode: ReadWriteOnce
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+    media:
+      existingClaim: plex-nfs-media
+      advancedMounts:
+        main:
+          main:
             - path: /downloads
               subPath: qbittorrent/downloads
             - path: /movies
               subPath: movies
-          sonarr:
+
+  service:
+    main:
+      ports:
+        http:
+          port: 7878
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host radarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: radarr-tls-certificate
+          hosts:
+            - *host
+
+######################
+# sonarr             #
+######################
+
+sonarr:
+  global:
+    nameOverride: sonarr
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: sonarr
+        annotations:
+          setGateway: "true"
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
+        main:
+          image:
+            repository: lscr.io/linuxserver/sonarr
+            tag: 4.0.1
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
+      accessMode: ReadWriteOnce
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+    media:
+      existingClaim: plex-nfs-media
+      advancedMounts:
+        main:
+          main:
+            - path: /downloads
+              subPath: qbittorrent/downloads
+            - path: /movies
+              subPath: movies
+
+  service:
+    main:
+      ports:
+        http:
+          port: 8989
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host sonarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: sonarr-tls-certificate
+          hosts:
+            - *host
+
+######################
+# sonarr             #
+######################
+
+sonarr:
+  global:
+    nameOverride: sonarr
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: sonarr
+        annotations:
+          setGateway: "true"
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
+        main:
+          image:
+            repository: lscr.io/linuxserver/sonarr
+            tag: 4.0.1
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
+      accessMode: ReadWriteOnce
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+    media:
+      existingClaim: plex-nfs-media
+      advancedMounts:
+        main:
+          main:
             - path: /downloads
               subPath: qbittorrent/downloads
             - path: /shows
               subPath: shows
             - path: /anime
               subPath: anime
-    pms-config:
-      accessMode: ReadWriteOnce
-      size: 2Gi
-      advancedMounts:
+
+  service:
+    main:
+      ports:
+        http:
+          port: 8989
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host sonarr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: sonarr-tls-certificate
+          hosts:
+            - *host
+
+######################
+# overseerr          #
+######################
+
+overseerr:
+  global:
+    nameOverride: overseerr
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: overseerr
+        annotations:
+          setGateway: "true"
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
         main:
-          main:
-            - path: /config
-    data:
+          image:
+            repository: lscr.io/linuxserver/overseerr
+            tag: 1.33.2
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
       accessMode: ReadWriteOnce
-      size: 50Gi
-      advancedMounts:
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+
+  service:
+    main:
+      ports:
+        http:
+          port: 5055
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host overseerr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: overseerr-tls-certificate
+          hosts:
+            - *host
+
+######################
+# tautulli           #
+######################
+
+tautulli:
+  global:
+    nameOverride: tautulli
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: tautulli
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
         main:
-          qbittorrent:
-            - path: /config
-              subPath: qbittorrent/config
-          prowlarr:
-            - path: /config
-              subPath: prowlarr/config
-          radarr:
-            - path: /config
-              subPath: radarr/config
-          sonarr:
-            - path: /config
-              subPath: sonarr/config
-          overseerr:
-            - path: /config
-              subPath: overseerr/config
-          tautulli:
-            - path: /config
-              subPath: tautulli/config
-          organizr:
-            - path: /config
-              subPath: organizr/config
+          image:
+            repository: lscr.io/linuxserver/tautulli
+            tag: 2.13.4
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      annotations:
+        'k8up.io/backup': 'true'
+
+  service:
+    main:
+      ports:
+        http:
+          port: 5055
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host tautulli.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: tautulli-tls-certificate
+          hosts:
+            - *host
+
+######################
+# organizr           #
+######################
+
+organizr:
+  global:
+    nameOverride: organizr
+
+  controllers:
+    main:
+      strategy: RollingUpdate
+
+      pod:
+        hostname: organizr
+        securityContext:
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+
+      containers:
+        main:
+          image:
+            repository: docker.io/organizr/organizr
+            tag: latest
+          env:
+            TZ: "America/Phoenix"
+          
+  persistance:
+    config:
+      accessMode: ReadWriteOnce
+      size: 250Mi
+      annotations:
+        'k8up.io/backup': 'true'
+
+  service:
+    main:
+      ports:
+        http:
+          port: 80
+          protocol: HTTP
+
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host organizr.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: organizr-tls-certificate
+          hosts:
+            - *host
