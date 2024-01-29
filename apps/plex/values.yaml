@@ -562,7 +562,7 @@ tautulli:
     main:
       ports:
         http:
-          port: 5055
+          port: 8081
           protocol: HTTP
 
   ingress:
