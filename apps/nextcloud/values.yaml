@@ -16,6 +16,7 @@ nextcloud:
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/proxy-body-size: 0m
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
       nginx.ingress.kubernetes.io/server-snippet: |-
@@ -51,9 +52,9 @@ nextcloud:
   readinessProbe:
     enabled: false
   redis:
-    enabled: false
+    enabled: true
   cronjob:
-    enabled: false
+    enabled: true
   persistence:
     enabled: true
     size: 10Gi
