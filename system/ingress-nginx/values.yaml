@@ -5,7 +5,7 @@ ingress-nginx:
     #   enabled: true
     #   minReplicas: 2
     #   maxReplicas: 5
-    allowSnippetAnnotations: false
+    allowSnippetAnnotations: true
     service:
       annotations:
         "lbipam.cilium.io/ips": "10.10.10.225" 
