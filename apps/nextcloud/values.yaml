@@ -52,4 +52,7 @@ nextcloud:
     enabled: true
   persistence:
     enabled: true
-    size: 100Gi
+    size: 10Gi
+    nextcloudData:
+      enabled: true
+      size: 100Gi
