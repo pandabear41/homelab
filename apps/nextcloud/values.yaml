@@ -1,4 +1,12 @@
 nextcloud:
+  livenessProbe:
+    nabled: false
+  readinessProbe:
+    enabled: false
+  redis:
+    enabled: false
+  cronjob:
+    enabled: false
   nextcloud:
     host: &host nextcloud.pl4.me
     configs:
@@ -46,14 +54,6 @@ nextcloud:
       - secretName: nextcloud-tls-certificate
         hosts:
           - *host
-  redis:
-    enabled: false
-  cronjob:
-    enabled: false
-  livenessProbe:
-    nabled: false
-  readinessProbe:
-    enabled: false
   persistence:
     enabled: true
     accessMode: ReadWriteMany
