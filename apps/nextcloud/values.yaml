@@ -52,7 +52,9 @@ nextcloud:
     enabled: true
   persistence:
     enabled: true
+    accessMode: ReadWriteMany
     size: 10Gi
     nextcloudData:
       enabled: true
+      accessMode: ReadWriteMany
       size: 100Gi
