@@ -47,7 +47,7 @@ nextcloud:
         hosts:
           - *host
   redis:
-    enabled: true
+    enabled: false
   cronjob:
     enabled: false
   persistence:
