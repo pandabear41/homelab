@@ -50,6 +50,10 @@ nextcloud:
     enabled: false
   cronjob:
     enabled: false
+  livenessProbe:
+    nabled: false
+  readinessProbe:
+    enabled: false
   persistence:
     enabled: true
     accessMode: ReadWriteMany
