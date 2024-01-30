@@ -1,0 +1,15 @@
+nextcloud:
+  nextcloud:
+    host: &host nextcloud.pl4.me
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    tls:
+      - secretName: nextcloud-tls-certificate
+        hosts:
+          - *host
+  persistence:
+    enabled: true
+    size: 100Gi
