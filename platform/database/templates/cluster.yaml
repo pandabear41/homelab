@@ -18,7 +18,7 @@ spec:
     barmanObjectStore:
       destinationPath: s3://pl4-homelab-database/
       endpointURL: https://s3.us-west-000.backblazeb2.com
-      serverName: database-cluster-1
+      serverName: database-cluster-a
       s3Credentials:
         accessKeyId:
           name: backblaze-db
