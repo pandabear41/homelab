@@ -3,7 +3,7 @@ nextcloud:
   nextcloud:
     host: &host nextcloud.pl4.me
     phpConfigs:
-      redis-cluster.ini: |-
+      redis-session.ini: |-
         ; -- Redis session handler
         session.save_handler = redis
         session.save_path = "tcp://${REDIS_HOST}:${REDIS_HOST_PORT}?auth=${REDIS_HOST_PASSWORD}"
