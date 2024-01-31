@@ -8,3 +8,6 @@ dependencies:
   - name: ext-postgres-operator
     version: 1.2.5
     repository: https://movetokube.github.io/postgres-operator/
+  - name: pgadmin4
+    version: 1.23.1
+    repository: https://helm.runix.net

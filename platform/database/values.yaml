@@ -1,2 +1,41 @@
 ext-postgres-operator:
   existingSecret: ext-postgres-secrets
+
+pgadmin4:
+  serverDefinitions:
+    enabled: true
+    resourceType: Secret
+    servers:
+        default:
+            Name: default
+            Group: Servers
+            Port: 5432
+            Username: postgres
+            Host: database-cluster-rw.database.svc.cluster.local
+            SSLMode: prefer
+            MaintenanceDB: postgres
+
+  existing-secret: database-pgadmin4-secret
+  env:
+    email: pgadmin4
+
+  service:
+    portName: main
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: &host pgadmin.pl4.me
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              name: main
+              port: http    
+    tls:
+      - secretName: pgadmin-tls-certificate
+        hosts:
+          - *host
