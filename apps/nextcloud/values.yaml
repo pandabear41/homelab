@@ -35,6 +35,10 @@ nextcloud:
       #   ];
 
     extraEnv:
+      - name: PHP_MEMORY_LIMIT
+        value: 1024M
+      - name: PHP_UPLOAD_LIMIT
+        value: 1024M
       - name: REDIS_HOST
         value: "nextcloud-dragonfly.nextcloud.svc.cluster.local"
       - name: REDIS_HOST_PORT
