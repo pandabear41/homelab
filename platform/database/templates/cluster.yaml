@@ -14,12 +14,6 @@ spec:
     shared_preload_libraries:
       - "vectors.so"
     parameters:
-      pg_stat_statements.max: "10000"
-      pg_stat_statements.track: all
-      pgaudit.log: "all, -misc"
-      pgaudit.log_catalog: "off"
-      pgaudit.log_parameter: "on"
-      pgaudit.log_relation: "on"
       auto_explain.log_min_duration: "10s"
   primaryUpdateStrategy: unsupervised
   storage:
