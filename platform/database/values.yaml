@@ -5,15 +5,6 @@ pgadmin4:
   serverDefinitions:
     enabled: true
     resourceType: Secret
-    servers:
-        default:
-            Name: default
-            Group: Servers
-            Port: 5432
-            Username: postgres
-            Host: database-cluster-rw.database.svc.cluster.local
-            SSLMode: prefer
-            MaintenanceDB: postgres
 
   existingSecret: database-pgadmin4
   env:
