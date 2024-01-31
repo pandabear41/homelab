@@ -31,8 +31,6 @@ redisinsight:
           image:
             repository: docker.io/redis/redisinsight
             tag: 2.42
-          env:
-            RI_APP_HOST: redis-headless.redis.svc.cluster.local
   
   serviceAccount:
     create: true
