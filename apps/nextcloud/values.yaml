@@ -126,7 +126,7 @@ dragonfly:
 
   defaultPodOptions:
     securityContext:
-      fsGroup: 2000
+      fsGroup: 1000
 
   controllers:
     main:
