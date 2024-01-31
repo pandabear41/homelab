@@ -143,7 +143,7 @@ dragonfly:
                 secretKeyRef:
                   name: dragonfly-secret
                   key: DFLY_PASSWORD
-          SecurityContext:
+          securityContext:
             fsGroup: 2000
             capabilities:
               drop:
