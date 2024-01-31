@@ -121,6 +121,9 @@ nextcloud:
           - *host
 
 dragonfly:
+  global:
+    nameOverride: dragonfly
+    
   defaultPodOptions:
     securityContext:
       fsGroup: 2000
