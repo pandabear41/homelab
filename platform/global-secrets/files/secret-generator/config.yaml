@@ -59,10 +59,10 @@
       length: 32
       special: true
 
-# redis
-- name: redis.auth
+# nextcloud
+- name: nextcloud.dragonfly
   data:
-    - key: password
+    - key: DFLY_PASSWORD
       length: 32
       special: true
 
