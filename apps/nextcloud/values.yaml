@@ -1,4 +1,5 @@
 nextcloud:
+  # Controller
   nextcloud:
     host: &host nextcloud.pl4.me
     configs:
@@ -11,6 +12,50 @@ nextcloud:
           ),
           'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
         );
+    extraEnv:
+      - name: REDIS_HOST
+        value: redis.redis.svc.cluster.local
+      - name: REDIS_HOST_PORT
+        value: 6379 
+      - name: REDIS_HOST_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: redis-auth-secret
+            key: password
+
+  # Database
+  internalDatabase:
+    enabled: false
+  externalDatabase:
+    enabled: true
+    type: postgresql
+    existingSecret: 
+      enabled: true
+      secretName: database-nextcloud-user
+      usernameKey: LOGIN
+      passwordKey: PASSWORD
+      hostKey: HOST
+      databaseKey: DATABASE_NAME
+
+  # Other Config
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
+  redis:
+    enabled: false
+  cronjob:
+    enabled: true
+
+  # Storage
+  persistence:
+    enabled: true
+    size: 10Gi
+    nextcloudData:
+      enabled: true
+      size: 100Gi
+
+  # Ingress
   ingress:
     enabled: true
     className: nginx
@@ -46,17 +91,3 @@ nextcloud:
       - secretName: nextcloud-tls-certificate
         hosts:
           - *host
-  livenessProbe:
-    enabled: false
-  readinessProbe:
-    enabled: false
-  redis:
-    enabled: true
-  cronjob:
-    enabled: true
-  persistence:
-    enabled: true
-    size: 10Gi
-    nextcloudData:
-      enabled: true
-      size: 100Gi
