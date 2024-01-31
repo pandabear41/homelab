@@ -167,7 +167,7 @@ dragonfly:
     data:
       enabled: true
       accessMode: ReadWriteOnce
-      size: 128mi
+      size: 128Mi
 
   serviceAccount:
     create: true
