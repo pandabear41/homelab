@@ -147,6 +147,11 @@ dragonfly:
                 secretKeyRef:
                   name: dragonfly-secret
                   key: DFLY_PASSWORD
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
           
           probes:
             startup:
