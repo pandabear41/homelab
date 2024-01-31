@@ -14,9 +14,9 @@ nextcloud:
         );
     extraEnv:
       - name: REDIS_HOST
-        value: redis.redis.svc.cluster.local
+        value: "redis.redis.svc.cluster.local"
       - name: REDIS_HOST_PORT
-        value: 6379 
+        value: "6379"
       - name: REDIS_HOST_PASSWORD
         valueFrom:
           secretKeyRef:
