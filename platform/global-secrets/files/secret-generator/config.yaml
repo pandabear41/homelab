@@ -64,5 +64,5 @@
   data:
     - key: DFLY_PASSWORD
       length: 32
-      special: true
+      special: false
 
