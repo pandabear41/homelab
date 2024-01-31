@@ -2,6 +2,11 @@ nextcloud:
   # Controller
   nextcloud:
     host: &host nextcloud.pl4.me
+    phpConfigs:
+      redis-cluster.ini: |-
+        session.save_handler = rediscluster
+        session.save_path = "seed[]=redis-cluster-endpoint&timeout=2&read_timeout=2&failover=error&persistent=1&auth[user]=redis-user&auth[pass]=redis-password"
+
     configs:
       proxy.config.php: |-
         <?php
@@ -12,7 +17,23 @@ nextcloud:
           ),
           'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
         );
-
+      redis-cluster.config.php: |-
+        <?php 
+        $CONFIG = [
+          'memcache.distributed' => '\\OC\\Memcache\\Redis',
+          'memcache.locking' => '\\OC\\Memcache\\Redis',
+          'redis.cluster' => [
+            'seeds' => [
+              'redis-cluster-endpoint',
+            ],
+            'timeout' => 0.0,
+            'read_timeout' => 0.0,
+            'failover_mode' => \RedisCluster::FAILOVER_ERROR,
+            'user' => 'redis-user',
+            'password' => 'redis-password'
+          ],
+        ];
+  
   # Database
   internalDatabase:
     enabled: false
