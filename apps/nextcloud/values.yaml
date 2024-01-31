@@ -36,7 +36,7 @@ nextcloud:
 
     extraEnv:
       - name: REDIS_HOST
-        value: "dragonfly.nextcloud.svc.cluster.local"
+        value: "nextcloud-dragonfly.nextcloud.svc.cluster.local"
       - name: REDIS_HOST_PORT
         value: "6379"
       - name: REDIS_HOST_PASSWORD
