@@ -1,0 +1,9 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: backup-example
+spec:
+  method: barmanObjectStore
+  backupOwnerReference: self
+  cluster:
+    name: database-cluster
