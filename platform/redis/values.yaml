@@ -21,6 +21,9 @@ redis:
     #   interval: 1m
 
 redisinsight:
+  global:
+    nameOverride: redisinsight
+
   controllers:
     main:
       containers:
