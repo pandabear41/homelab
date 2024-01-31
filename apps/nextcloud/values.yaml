@@ -148,7 +148,6 @@ dragonfly:
                   name: dragonfly-secret
                   key: DFLY_PASSWORD
           securityContext:
-            fsGroup: 2000
             capabilities:
               drop:
                 - ALL
@@ -165,14 +164,10 @@ dragonfly:
               enabled: false
 
   persistence:
-    dragonfly-data:
+    data:
       enabled: true
       accessMode: ReadWriteOnce
       size: 128mi
-      advancedMounts:
-        main:
-          main: 
-            - path: /data
 
   serviceAccount:
     create: true
