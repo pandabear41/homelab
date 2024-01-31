@@ -4,6 +4,5 @@ metadata:
   name: backup-example
 spec:
   method: barmanObjectStore
-  backupOwnerReference: self
   cluster:
     name: database-cluster
