@@ -161,9 +161,14 @@ dragonfly:
               enabled: false
 
   persistence:
-    data:
+    dragonfly-data:
       enabled: true
+      accessMode: ReadWriteOnce
       size: 128mi
+      advancedMounts:
+        main:
+          main: 
+            - path: /data
 
   serviceAccount:
     create: true
