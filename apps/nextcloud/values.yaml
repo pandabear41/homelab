@@ -134,31 +134,31 @@ dragonfly:
           image: 
             repository: ghcr.io/dragonflydb/dragonfly
             tag: latest
-          args:
-            - --default_lua_flags=allow-undeclared-keys
-            - --dir=/data
-          env:
-            DFLY_PASSWORD:
-              valueFrom:
-                secretKeyRef:
-                  name: dragonfly-secret
-                  key: DFLY_PASSWORD
-          securityContext:
-            fsGroup: 2000
-            capabilities:
-              drop:
-                - ALL
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 1000
+          # args:
+          #   - --default_lua_flags=allow-undeclared-keys
+          #   - --dir=/data
+          # env:
+          #   DFLY_PASSWORD:
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: dragonfly-secret
+          #         key: DFLY_PASSWORD
+          # securityContext:
+          #   fsGroup: 2000
+          #   capabilities:
+          #     drop:
+          #       - ALL
+          #   readOnlyRootFilesystem: true
+          #   runAsNonRoot: true
+          #   runAsUser: 1000
           
-          probes:
-            startup:
-              enabled: false
-            liveness:
-              enabled: false
-            readiness:
-              enabled: false
+          # probes:
+          #   startup:
+          #     enabled: false
+          #   liveness:
+          #     enabled: false
+          #   readiness:
+          #     enabled: false
 
   persistence:
     dragonfly-data:
