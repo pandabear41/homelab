@@ -133,7 +133,7 @@ dragonfly:
         main:
           image: 
             repository: ghcr.io/dragonflydb/dragonfly
-            tag: v1.14.1
+            tag: latest
           args:
             - --default_lua_flags=allow-undeclared-keys
             - --dir=/data
