@@ -15,7 +15,7 @@ pgadmin4:
             SSLMode: prefer
             MaintenanceDB: postgres
 
-  existing-secret: database-pgadmin4-secret
+  existingSecret: database-pgadmin4
   env:
     email: pgadmin4@pl4.me
 
