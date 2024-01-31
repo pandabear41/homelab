@@ -5,6 +5,6 @@ dependencies:
   - name: cloudnative-pg
     version: 0.20.0
     repository: https://cloudnative-pg.github.io/charts
-  # - name: ext-postgres-operator
-  #   version: 1.2.5
-  #   repository: https://movetokube.github.io/postgres-operator/
+  - name: ext-postgres-operator
+    version: 1.2.5
+    repository: https://movetokube.github.io/postgres-operator/
