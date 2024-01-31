@@ -74,6 +74,8 @@ nextcloud:
     #     enabled: false
   cronjob:
     enabled: true
+  nginx:
+    enabled: true
 
   # Storage
   persistence:
