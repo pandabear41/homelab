@@ -121,13 +121,11 @@ nextcloud:
           - *host
 
 dragonfly:
-  global:
-    nameOverride: dragonfly
-    
   defaultPodOptions:
     securityContext:
       fsGroup: 2000
-  controller:
+
+  controllers:
     main:
       type: statefulset
       replicas: 1
@@ -136,32 +134,32 @@ dragonfly:
         main:
           image: 
             repository: ghcr.io/dragonflydb/dragonfly
-            tag: latest
-          # args:
-          #   - --default_lua_flags=allow-undeclared-keys
-          #   - --dir=/data
-          # env:
-          #   DFLY_PASSWORD:
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: dragonfly-secret
-          #         key: DFLY_PASSWORD
-          # securityContext:
-          #   fsGroup: 2000
-          #   capabilities:
-          #     drop:
-          #       - ALL
-          #   readOnlyRootFilesystem: true
-          #   runAsNonRoot: true
-          #   runAsUser: 1000
+            tag: v1.14.1
+          args:
+            - --default_lua_flags=allow-undeclared-keys
+            - --dir=/data
+          env:
+            DFLY_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: dragonfly-secret
+                  key: DFLY_PASSWORD
+          securityContext:
+            fsGroup: 2000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
           
-          # probes:
-          #   startup:
-          #     enabled: false
-          #   liveness:
-          #     enabled: false
-          #   readiness:
-          #     enabled: false
+          probes:
+            startup:
+              enabled: false
+            liveness:
+              enabled: false
+            readiness:
+              enabled: false
 
   persistence:
     dragonfly-data:
