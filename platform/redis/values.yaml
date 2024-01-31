@@ -15,10 +15,10 @@ redis:
     startupProbe:
       failureThreshold: 2
   metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-      interval: 1m
+    enabled: false
+    # serviceMonitor:
+    #   enabled: true
+    #   interval: 1m
 
 redisinsight:
   controllers:
