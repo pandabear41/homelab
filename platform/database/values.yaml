@@ -17,7 +17,7 @@ pgadmin4:
 
   existing-secret: database-pgadmin4-secret
   env:
-    email: pgadmin4
+    email: pgadmin4@pl4.me
 
   service:
     portName: main
