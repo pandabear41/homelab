@@ -82,7 +82,7 @@ nextcloud:
   # Storage
   persistence:
     enabled: true
-    size: 10Gi
+    size: 100Gi
     nextcloudData:
       enabled: true
       size: 100Gi
