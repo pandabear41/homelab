@@ -168,7 +168,18 @@ qbittorrent:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
 
-      initContainers:
+      containers:
+        main:
+          image:
+            repository: docker.io/linuxserver/qbittorrent
+            tag: 4.6.3-libtorrentv1
+          env:
+            TZ: "America/Phoenix"
+    blacklist-job:
+      type: cronjob
+      cronjob:
+        schedule: "0 0 * * *"
+      containers:
         zget-blacklist:
           image:
             repository: docker.io/linuxserver/qbittorrent
@@ -179,13 +190,6 @@ qbittorrent:
           args: # TODO optimize this
             - |
               wget -O /config/wael.list.p2p https://github.com/waelisa/Best-blocklist/raw/main/wael.list.p2p
-      containers:
-        main:
-          image:
-            repository: docker.io/linuxserver/qbittorrent
-            tag: 4.6.3-libtorrentv1
-          env:
-            TZ: "America/Phoenix"
   persistence:
     config:
       enabled: true
