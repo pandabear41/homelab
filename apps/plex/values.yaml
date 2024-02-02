@@ -313,7 +313,7 @@ flaresolver:
         main:
           image:
             repository: docker.io/flaresolverr/flaresolverr
-            tag: v3.3.13
+            tag: 3.3.13
           env:
             LOG_LEVEL: "Info"
           
