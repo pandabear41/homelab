@@ -33,7 +33,7 @@ plex:
             limits:
               gpu.intel.com/i915: 1
           env:
-            PLEX_CLAIM: "claim-tU7s_C4GXMvcU5wzUMbx"
+            PLEX_CLAIM: "claim--aUyDhe_7SyL-4H8RSxd"
             HOSTNAME: "plex.pl4.me"
             TZ: "America/Phoenix"
             ALLOWED_NETWORKS: "192.168.15.1/24"
@@ -285,6 +285,21 @@ radarr:
             tag: 5.2.6
           env:
             TZ: "America/Phoenix"
+          
+          # probes:
+          #   liveness:
+          #     enabled: true
+          #     spec:
+          #       exec:
+          #         command:
+          #           - sh
+          #           - -c
+          #           - if [ $(wget -q -O- http://ip-api.com/line/?fields=countryCode) == 'RO' ]; then exit 0; else exit $?; fi
+          #       initialDelaySeconds: 30
+          #       periodSeconds: 300
+          #       failureThreshold: 1
+
+   
           
   persistence:
     config:
