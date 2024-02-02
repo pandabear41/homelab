@@ -471,8 +471,10 @@ sonarr:
           main:
             - path: /downloads
               subPath: qbittorrent/downloads
-            - path: /movies
-              subPath: movies
+            - path: /shows
+              subPath: shows
+            - path: /anime
+              subPath: anime
 
   service:
     main:
