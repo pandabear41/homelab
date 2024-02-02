@@ -70,17 +70,13 @@ plex:
         http:
           port: 32400
           protocol: HTTP
-    external:
-      type: LoadBalancer
-      loadBalancerIP: 10.10.10.230
-      controller: main
-      primary: false
-      annotations: 
-        purelb.io/allow-shared-ip: plex
-      ports:
-        plex-external:
-          port: 32400
-          protocol: TCP
+    # external:
+    #   controller: main
+    #   primary: false
+    #   ports:
+    #     plex-external:
+    #       port: 32400
+    #       protocol: TCP
     extraports:
       type: LoadBalancer
       loadBalancerIP: 10.10.10.230
@@ -122,6 +118,23 @@ plex:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
         - host: &host plex.pl4.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http    
+      tls:
+        - secretName: plex-tls-certificate
+          hosts:
+            - *host
+    external:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: &host plex-external.pl4.me
           paths:
             - path: /
               pathType: Prefix

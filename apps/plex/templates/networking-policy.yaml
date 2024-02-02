@@ -60,8 +60,6 @@ spec:
   ingress:
   - ports:
     - protocol: TCP
-      port: 32400
-    - protocol: TCP
       port: 1900
     - protocol: TCP
       port: 8324
