@@ -71,17 +71,23 @@ plex:
           port: 32400
           protocol: HTTP
     external:
-      type: ClusterIP
+      type: LoadBalancer
+      loadBalancerIP: 10.10.10.230
       controller: main
       primary: false
+      annotations: 
+        purelb.io/allow-shared-ip: plex
       ports:
         plex-external:
           port: 32400
           protocol: TCP
     extraports:
-      type: ClusterIP
+      type: LoadBalancer
+      loadBalancerIP: 10.10.10.230
       controller: main
       primary: false
+      annotations: 
+        purelb.io/allow-shared-ip: plex
       ports:
         plex-dlna:
           port: 1900

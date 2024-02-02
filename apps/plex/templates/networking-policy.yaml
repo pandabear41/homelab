@@ -46,3 +46,34 @@ spec:
     - {}
   policyTypes:
     - Egress
+--- 
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-plex-ingress
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: plex
+  policyTypes:
+  - Ingress
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: 32400
+    - protocol: TCP
+      port: 1900
+    - protocol: TCP
+      port: 8324
+    - protocol: UDP
+      port: 32469
+    - protocol: UDP
+      port: 5353
+    - protocol: UDP
+      port: 32410
+    - protocol: UDP
+      port: 32412
+    - protocol: UDP
+      port: 32413
+    - protocol: UDP
+      port: 32414
