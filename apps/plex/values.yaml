@@ -181,8 +181,6 @@ qbittorrent:
           args: # TODO optimize this
             - |
               wget -O /config/wael.list.p2p https://github.com/waelisa/Best-blocklist/raw/main/wael.list.p2p
-
-              /init
   persistence:
     config:
       enabled: true
