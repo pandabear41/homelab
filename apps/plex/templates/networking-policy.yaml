@@ -28,7 +28,7 @@ spec:
     matchExpressions:
       - key: app.kubernetes.io/name
         operator: In
-        values: ["plex", "overseerr", "prowlarr", "flaresolver"]
+        values: ["plex", "overseerr", "prowlarr", "flaresolverr"]
   egress:
     - {}
   policyTypes:
