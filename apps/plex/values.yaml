@@ -245,8 +245,8 @@ prowlarr:
 
       pod:
         hostname: prowlarr
-        annotations:
-          setGateway: "true"
+        # annotations:
+        #   setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
@@ -307,8 +307,8 @@ radarr:
 
       pod:
         hostname: radarr
-        annotations:
-          setGateway: "true"
+        # annotations:
+        #   setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
@@ -394,8 +394,8 @@ sonarr:
 
       pod:
         hostname: sonarr
-        annotations:
-          setGateway: "true"
+        # annotations:
+        #   setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
@@ -453,80 +453,6 @@ sonarr:
             - *host
 
 ######################
-# sonarr             #
-######################
-
-sonarr:
-  global:
-    nameOverride: sonarr
-
-  controllers:
-    main:
-      strategy: RollingUpdate
-
-      pod:
-        hostname: sonarr
-        annotations:
-          setGateway: "true"
-        securityContext:
-          fsGroup: 1000
-          fsGroupChangePolicy: OnRootMismatch
-
-      containers:
-        main:
-          image:
-            repository: lscr.io/linuxserver/sonarr
-            tag: 4.0.1
-          env:
-            TZ: "America/Phoenix"
-          
-  persistence:
-    config:
-      enabled: true
-      accessMode: ReadWriteOnce
-      size: 250Mi
-      annotations:
-        'k8up.io/backup': 'true'
-    media:
-      enabled: true
-      existingClaim: plex-nfs-media
-      advancedMounts:
-        main:
-          main:
-            - path: /downloads
-              subPath: qbittorrent/downloads
-            - path: /shows
-              subPath: shows
-            - path: /anime
-              subPath: anime
-
-  service:
-    main:
-      ports:
-        http:
-          port: 8989
-          protocol: HTTP
-
-  ingress:
-    main:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - host: &host sonarr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: http    
-      tls:
-        - secretName: sonarr-tls-certificate
-          hosts:
-            - *host
-
-######################
 # overseerr          #
 ######################
 
@@ -540,8 +466,6 @@ overseerr:
 
       pod:
         hostname: overseerr
-        annotations:
-          setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
