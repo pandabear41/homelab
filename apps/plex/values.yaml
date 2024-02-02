@@ -175,7 +175,16 @@ qbittorrent:
             tag: 4.6.3-libtorrentv1
           env:
             TZ: "America/Phoenix"
-          
+          command:
+            - "sh"
+            - "-c"
+          args: # TODO optimize this
+            - |
+              apt-get install -y wget
+
+              wget -O /config/wael.list.p2p --backups=0 https://github.com/waelisa/Best-blocklist/raw/main/wael.list.p2p
+
+              /init
   persistence:
     config:
       enabled: true
