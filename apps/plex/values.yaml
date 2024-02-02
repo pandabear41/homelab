@@ -355,8 +355,8 @@ radarr:
 
       pod:
         hostname: radarr
-        # annotations:
-        #   setGateway: "true"
+        annotations:
+          setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
@@ -442,8 +442,8 @@ sonarr:
 
       pod:
         hostname: sonarr
-        # annotations:
-        #   setGateway: "true"
+        annotations:
+          setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
