@@ -15,6 +15,10 @@ dependencies:
     version: 2.5.0
     repository: https://bjw-s.github.io/helm-charts
   - name: app-template
+    alias: flaresolverr
+    version: 2.5.0
+    repository: https://bjw-s.github.io/helm-charts
+  - name: app-template
     alias: radarr
     version: 2.5.0
     repository: https://bjw-s.github.io/helm-charts
