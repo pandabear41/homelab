@@ -144,7 +144,7 @@ plex:
                 name: main
                 port: http    
       tls:
-        - secretName: plex-tls-certificate
+        - secretName: plex-external-tls-certificate
           hosts:
             - *host
 
