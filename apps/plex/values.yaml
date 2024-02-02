@@ -245,8 +245,8 @@ prowlarr:
 
       pod:
         hostname: prowlarr
-        # annotations:
-        #   setGateway: "true"
+        annotations:
+          setGateway: "true"
         securityContext:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
