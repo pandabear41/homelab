@@ -168,7 +168,7 @@ qbittorrent:
           fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
 
-      init-containers:
+      initContainers:
         0-get-blacklist:
           image:
             repository: docker.io/linuxserver/qbittorrent
