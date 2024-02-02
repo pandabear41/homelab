@@ -295,25 +295,23 @@ prowlarr:
 
 
 ######################
-# flaresolver        #
+# flaresolverr        #
 ######################
 
-flaresolver:
+flaresolverr:
   global:
-    nameOverride: flaresolver
+    nameOverride: flaresolverr
 
   controllers:
     main:
-      strategy: RollingUpdate
-
       pod:
-        hostname: flaresolver
+        hostname: flaresolverr
 
       containers:
         main:
           image:
             repository: docker.io/flaresolverr/flaresolverr
-            tag: 3.3.13
+            tag: v3.3.13
           env:
             LOG_LEVEL: "Info"
           
@@ -331,7 +329,7 @@ flaresolver:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: &host flaresolver.pl4.me
+        - host: &host flaresolverr.pl4.me
           paths:
             - path: /
               pathType: Prefix
@@ -339,7 +337,7 @@ flaresolver:
                 name: main
                 port: http    
       tls:
-        - secretName: flaresolver-tls-certificate
+        - secretName: flaresolverr-tls-certificate
           hosts:
             - *host
 
