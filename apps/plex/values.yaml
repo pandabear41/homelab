@@ -320,26 +320,26 @@ flaresolverr:
       ports:
         http:
           port: 8191
-          protocol: HTTP
+          protocol: TCP
 
-  ingress:
-    main:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - host: &host flaresolverr.pl4.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: main
-                port: http    
-      tls:
-        - secretName: flaresolverr-tls-certificate
-          hosts:
-            - *host
+  # ingress:
+  #   main:
+  #     enabled: true
+  #     className: nginx
+  #     annotations:
+  #       cert-manager.io/cluster-issuer: letsencrypt-prod
+  #     hosts:
+  #       - host: &host flaresolverr.pl4.me
+  #         paths:
+  #           - path: /
+  #             pathType: Prefix
+  #             service:
+  #               name: main
+  #               port: http    
+  #     tls:
+  #       - secretName: flaresolverr-tls-certificate
+  #         hosts:
+  #           - *host
 
 ######################
 # radarr             #
