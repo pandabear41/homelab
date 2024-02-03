@@ -172,7 +172,7 @@ qbittorrent:
         main:
           image:
             repository: docker.io/linuxserver/qbittorrent
-            tag: 4.6.3-libtorrentv1
+            tag: 4.6.2
           env:
             TZ: "America/Phoenix"
     blacklist-job:
@@ -183,7 +183,7 @@ qbittorrent:
         zget-blacklist:
           image:
             repository: docker.io/linuxserver/qbittorrent
-            tag: 4.6.2-libtorrentv1
+            tag: 4.6.2
           command:
             - "sh"
             - "-c"
