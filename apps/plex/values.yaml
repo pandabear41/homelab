@@ -205,6 +205,12 @@ qbittorrent:
           main:
             - path: /downloads
               subPath: qbittorrent/downloads
+            - path: /media/movies
+              subPath: movies
+            - path: /media/shows
+              subPath: shows
+            - path: /media/anime
+              subPath: anime
   service:
     main:
       ports:
