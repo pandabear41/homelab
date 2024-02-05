@@ -3,5 +3,6 @@
   roles:
     - prerequisites
     - k3s
+    - calico
     - automatic_upgrade
 

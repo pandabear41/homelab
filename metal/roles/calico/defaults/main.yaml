@@ -1,0 +1,14 @@
+calico_repo_url: https://docs.tigera.io/calico/charts
+calico_version: 1.15.0-rc.1 # TODO switch to stable release
+calico_namespace: kube-system
+calico_values:
+  installation:
+    cni:
+      type: Calico
+    calicoNetwork:
+      # bgp: Disabled
+      linuxDataplane: BPF
+      # ipPools:
+      # - cidr: "{{ load_balancer_ip_pool }}"
+      #   encapsulation: VXLAN
+    
