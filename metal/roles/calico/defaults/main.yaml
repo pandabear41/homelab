@@ -6,9 +6,9 @@ calico_values:
     cni:
       type: Calico
     calicoNetwork:
-      # bgp: Disabled
+      bgp: Disabled
       linuxDataplane: BPF
-      # ipPools:
-      # - cidr: "{{ load_balancer_ip_pool }}"
-      #   encapsulation: VXLAN
+      ipPools:
+      - cidr: "10.42.0.0/16"
+        encapsulation: VXLAN
     
