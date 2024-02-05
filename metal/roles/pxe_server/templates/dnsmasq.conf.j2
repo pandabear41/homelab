@@ -13,12 +13,6 @@ dhcp-option=3,{{ ansible_default_ipv4.gateway }}
 dhcp-match=set:efi-x86_64,option:client-arch,7
 dhcp-match=set:efi-x86_64,option:client-arch,9
 
-# Tag dhcp request from iPXE
-dhcp-match=set:ipxe,175
-
-# inspect the vendor class string and tag BIOS client
-dhcp-vendorclass=BIOS,PXEClient:Arch:00000
-
 # Set the Boot file based on the tag from above
 dhcp-boot=tag:efi-x86_64,grubx64.efi
 {% endif %}
