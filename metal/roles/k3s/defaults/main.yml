@@ -15,7 +15,7 @@ k3s_server_config:
   - proxy-mode=ipvs
   - ipvs-strict-arp=true
   # disable-helm-controller: true
-  # disable-kube-proxy: true
+  disable-kube-proxy: true
   disable-network-policy: true
   flannel-backend: none
   secrets-encryption: true
