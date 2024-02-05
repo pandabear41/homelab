@@ -1,5 +1,5 @@
 calico_repo_url: https://docs.tigera.io/calico/charts
-calico_version: 1.15.0-rc.1 # TODO switch to stable release
+calico_version: 3.27.0 # TODO switch to stable release
 calico_namespace: kube-system
 calico_values:
   installation:
