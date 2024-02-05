@@ -9,6 +9,6 @@ calico_values:
       bgp: Disabled
       linuxDataplane: BPF
       ipPools:
-      - cidr: "10.42.0.0/16"
+      - cidr: 10.42.0.0/16
         encapsulation: VXLAN
     
