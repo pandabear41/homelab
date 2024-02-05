@@ -7,7 +7,7 @@ calico_values:
       type: Calico
     calicoNetwork:
       bgp: Disabled
-      linuxDataplane: BPF
+      # linuxDataplane: BPF
       ipPools:
       - cidr: 10.42.0.0/16
         encapsulation: VXLAN
