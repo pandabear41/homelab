@@ -3,6 +3,9 @@
   roles:
     - prerequisites
     - k3s
-    - calico
     - automatic_upgrade
 
+- name: Install Kubernetes addons
+  hosts: localhost
+  roles:
+    - calico
