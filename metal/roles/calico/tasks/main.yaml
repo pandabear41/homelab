@@ -1,3 +1,11 @@
+
+# - name: Install Calico
+#   kubernetes.core.k8s:
+#     template: "{{ item }}"
+#   loop:
+#     - https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml
+
+
 - name: Install Calico
   kubernetes.core.helm:
     name: calico
@@ -19,9 +27,9 @@
   retries: 5
   delay: 10
 
-- name: Apply Calico resources
-  kubernetes.core.k8s:
-    template: "{{ item }}"
-  loop:
-    - kubernetes-services-endpoint.yaml
-    - kubernetes-services-endpoint-2.yaml
+# - name: Apply Calico resources
+#   kubernetes.core.k8s:
+#     template: "{{ item }}"
+#   loop:
+#     - kubernetes-services-endpoint.yaml
+#     - kubernetes-services-endpoint-2.yaml

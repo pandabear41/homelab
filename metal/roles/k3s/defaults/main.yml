@@ -11,11 +11,11 @@ k3s_server_config:
     - local-storage
     - servicelb
     - traefik
-  # kube-proxy-arg:
-  # - proxy-mode=ipvs
-  # - ipvs-strict-arp=true
+  kube-proxy-arg:
+  - proxy-mode=ipvs
+  - ipvs-strict-arp=true
   disable-helm-controller: true
-  disable-kube-proxy: true
+  # disable-kube-proxy: true
   disable-network-policy: true
   flannel-backend: none
   secrets-encryption: true
