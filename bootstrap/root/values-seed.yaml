@@ -1,3 +1,4 @@
 gitops:
   repo: https://github.com/pandabear41/homelab
+  revision: test-cilium-tunnel
  
