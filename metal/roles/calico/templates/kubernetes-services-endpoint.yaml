@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: kubernetes-services-endpoint
+  namespace: kube-system
+data:
+  KUBERNETES_SERVICE_HOST: {{calico_k8sServiceHost}}
+  KUBERNETES_SERVICE_PORT: {{calico_k8sServicePort}}
