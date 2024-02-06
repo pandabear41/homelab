@@ -4,5 +4,5 @@ metadata:
   name: kubernetes-services-endpoint
   namespace: kube-system
 data:
-  KUBERNETES_SERVICE_HOST: {{calico_k8sServiceHost}}
-  KUBERNETES_SERVICE_PORT: {{calico_k8sServicePort}}
+  KUBERNETES_SERVICE_HOST: '127.0.0.1'
+  KUBERNETES_SERVICE_PORT: '6444'
