@@ -13,5 +13,5 @@ calico_values:
       ipPools:
       - cidr: 10.42.0.0/16
         encapsulation: VXLANCrossSubnet
-
+        natOutgoing: false
     
