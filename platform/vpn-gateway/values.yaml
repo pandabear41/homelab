@@ -32,7 +32,7 @@ pod-gateway:
           type: tcp
   addons:
     vpn:
-      enabled: true
+      enabled: false
       type: gluetun
       gluetun:
         image:
