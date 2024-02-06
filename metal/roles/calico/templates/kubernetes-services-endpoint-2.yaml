@@ -4,5 +4,5 @@ metadata:
   name: kubernetes-services-endpoint
   namespace: calico-system
 data:
-  KUBERNETES_SERVICE_HOST: '127.0.0.1'
+  KUBERNETES_SERVICE_HOST: '10.20.10.200'
   KUBERNETES_SERVICE_PORT: '6444'
