@@ -14,5 +14,4 @@ calico_values:
       - cidr: 10.42.0.0/16
         encapsulation: VXLAN
         natOutgoing: Enabled
-        vxlanMode: Always
     
