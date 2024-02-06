@@ -12,3 +12,17 @@ cilium_values:
   # https://github.com/cilium/cilium/pull/28741
   k8sServiceHost: 127.0.0.1
   k8sServicePort: 6444
+  autoDirectNodeRoutes: true
+  routingMode: native
+  bpf:
+    masquerade: true
+  loadBalancer:
+    algorithm: maglev
+    mode: dsr
+  ipam:
+    mode: kubernetes
+  endpointRoutes:
+    enabled: true
+  ipv4:
+    enabled: true
+    ipv4NativeRoutingCIDR: 10.42.0.0/16
