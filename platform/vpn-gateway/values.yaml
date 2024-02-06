@@ -31,31 +31,7 @@ pod-gateway:
         - port: 20294
           type: tcp
   addons:
-    vpn:
-      enabled: false
-      type: gluetun
-      gluetun:
-        image:
-          repository: docker.io/qmcgaw/gluetun
-          tag: v3.37.0
-      env:
-        - name: WIREGUARD_MTU
-          value: "1390"
-        - name: FIREWALL
-          value: "off"
-        - name: DOT
-          value: "off"
-        - name: FIREWALL_VPN_INPUT_PORTS
-          value: "20294"
-      envFrom:
-        - secretRef:
-            name: wireguard-config
-      securityContext:
-        capabilities:
-          add: 
-            - NET_ADMIN
-      networkPolicy:
-        enabled: false
+
       # livenessProbe:
       #   exec:
       #     command:
