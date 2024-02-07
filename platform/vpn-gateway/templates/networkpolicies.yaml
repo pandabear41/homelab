@@ -6,7 +6,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/name: pod-gateway
+      app.kubernetes.io/name: vpn-gateway
   egress:
     - toEntities:
         - world
@@ -22,7 +22,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/name: pod-gateway
+      app.kubernetes.io/name: vpn-gateway
   egress:
     - toEndpoints:
         - matchLabels:
@@ -40,7 +40,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app.kubernetes.io/name: pod-gateway
+      app.kubernetes.io/name: vpn-gateway
   egress:
     - toEndpoints:
         - matchLabels:
