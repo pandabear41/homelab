@@ -1,4 +1,10 @@
 pihole:
+  replicaCount: 1
+
+  podAnnotations: 
+    prometheus.io/port: '9617'
+    prometheus.io/scrape: 'true'
+
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -15,13 +21,15 @@ pihole:
     enabled: true
 
   serviceDns:
+    loadBalancerIP: 10.10.10.250
     annotations:
-      "lbipam.cilium.io/sharing-key": "piholesvc"
+      purelb.io/allow-shared-ip: piholesvc
     type: LoadBalancer
 
   serviceDhcp:
+    loadBalancerIP: 10.10.10.250
     annotations:
-      "lbipam.cilium.io/sharing-key": "piholesvc"
+      purelb.io/allow-shared-ip: piholesvc
     type: LoadBalancer
 
   podDnsConfig:
@@ -34,7 +42,11 @@ pihole:
 
   admin:
     existingSecret: "pihole-secret" 
-    passwordKey: "PASSWORD"
+    passwordKey: "PRIMARY_HOST_PASSWORD"
+
+  monitoring:
+    sidecar:
+      enabled: true
 
   resources:
     limits:
@@ -47,3 +59,5 @@ pihole:
   extraEnvVars: {
     DNSMASQ_USER: "root"
   }
+
+
