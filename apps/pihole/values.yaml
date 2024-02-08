@@ -1,13 +1,17 @@
 pihole:
-  replicaCount: 2
+  replicaCount: 1
 
-  topologySpreadConstraints:
-    - maxSkew: 1
-      topologyKey: kubernetes.io/hostname
-      whenUnsatisfiable: DoNotSchedule
+  # topologySpreadConstraints:
+  #   - maxSkew: 1
+  #     topologyKey: kubernetes.io/hostname
+  #     whenUnsatisfiable: DoNotSchedule
 
-  image:
-    repository: docker.io/pihole/pihole
+  # image:
+  #   repository: docker.io/pihole/pihole
+
+  # Temp schedule on metal0
+  nodeSelector:
+    kubernetes.io/hostname: metal0
 
   podAnnotations: 
     prometheus.io/port: '9617'
@@ -27,13 +31,14 @@ pihole:
   
   virtualHost: *host
 
-  # dnsHostPort:
-  #   enabled: true
+  dnsHostPort:
+    enabled: true
 
   persistentVolumeClaim:
-    enabled: false
+    enabled: true
     accessModes:
-      - ReadWriteMany
+      - ReadWriteOnce
+      # - ReadWriteMany
 
   serviceDns:
     loadBalancerIP: 10.10.10.250
@@ -43,11 +48,7 @@ pihole:
     externalTrafficPolicy: Cluster
 
   serviceDhcp:
-    loadBalancerIP: 10.10.10.250
-    annotations:
-      purelb.io/allow-shared-ip: piholesvc
-    type: LoadBalancer
-    externalTrafficPolicy: Cluster
+    enabled: false
   
   serviceWeb:
     https:
@@ -66,8 +67,10 @@ pihole:
     passwordKey: "PRIMARY_HOST_PASSWORD"
 
   monitoring:
+    podMonitor:
+      enabled: true
     sidecar:
-      enabled: false
+      enabled: true
 
   resources:
     limits:
@@ -82,25 +85,31 @@ pihole:
     TZ: "America/Phoenix"
   
   # Doesn't work with replicas.
-  # extraContainers:
-  #   - name: pihole-orbital-sync
-  #     image: ghcr.io/mattwebbio/orbital-sync:1.5
-  #     command:
-  #       - sh
-  #       - -c
-  #     args:
-  #       - |
-  #         sleep 90
-  #         node dist/index.js
-  #     env:
-  #       - name: "TZ"
-  #         value: "America/Phoenix"
-  #       - name: "PRIMARY_HOST_BASE_URL"
-  #         value: "https://pi-hole.pl4.me"
-  #       - name: "INTERVAL_MINUTES"
-  #         value: "30"
-  #     envFrom:
-  #       - secretRef:
-  #           name: orbital-sync-config
-  #       - secretRef:
-  #           name: pihole-secret
+  extraContainers:
+    - name: pihole-orbital-sync
+      image: ghcr.io/mattwebbio/orbital-sync:1.5
+      command:
+        - sh
+        - -c
+      args:
+        - |
+          sleep 90
+          node dist/index.js
+      env:
+        - name: "TZ"
+          value: "America/Phoenix"
+        - name: "PRIMARY_HOST_BASE_URL"
+          value: "https://pi-hole.pl4.me"
+        - name: "INTERVAL_MINUTES"
+          value: "30"
+      envFrom:
+        - secretRef:
+            name: orbital-sync-config
+        - secretRef:
+            name: pihole-secret
+      resources:
+        limits:
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
