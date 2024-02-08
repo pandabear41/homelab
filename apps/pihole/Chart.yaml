@@ -5,7 +5,5 @@ dependencies:
   - name: pihole
     version: 2.21.0
     repository: https://mojo2600.github.io/pihole-kubernetes/
-  - name: app-template
-    alias: orbital-sync
-    version: 2.5.0
-    repository: https://bjw-s.github.io/helm-charts
+
+
