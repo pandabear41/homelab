@@ -77,7 +77,7 @@ pihole:
         - name: "PRIMARY_HOST_BASE_URL"
           value: "pihole-web.pihole.svc.cluster.local"
         - name: "INTERVAL_MINUTES"
-          value: 30
+          value: "30"
       envFrom:
         - secretRef:
             name: orbital-sync-config
