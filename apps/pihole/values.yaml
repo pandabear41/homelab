@@ -76,13 +76,13 @@ pihole:
         - -c
       args:
         - |
-          sleep 30
+          sleep 60
           node dist/index.js
       env:
         - name: "TZ"
           value: "America/Phoenix"
         - name: "PRIMARY_HOST_BASE_URL"
-          value: "https://pi-hole.pl4.me"
+          value: "http://pihole-web.pihole.svc.cluster.local"
         - name: "INTERVAL_MINUTES"
           value: "30"
       envFrom:
