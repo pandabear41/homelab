@@ -16,6 +16,8 @@ pihole:
       - secretName: pihole-tls-certificate
         hosts:
           - *host
+  
+  virtualHost: *host
 
   persistentVolumeClaim:
     enabled: true
@@ -33,6 +35,10 @@ pihole:
       purelb.io/allow-shared-ip: piholesvc
     type: LoadBalancer
     externalTrafficPolicy: Cluster
+  
+  serviceWeb:
+    https:
+      enabled: false
 
   podDnsConfig:
     enabled: true
