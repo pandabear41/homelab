@@ -27,8 +27,8 @@ pihole:
   
   virtualHost: *host
 
-  dnsHostPort:
-    enabled: true
+  # dnsHostPort:
+  #   enabled: true
 
   persistentVolumeClaim:
     enabled: true
@@ -67,7 +67,7 @@ pihole:
 
   monitoring:
     sidecar:
-      enabled: true
+      enabled: false
 
   resources:
     limits:
