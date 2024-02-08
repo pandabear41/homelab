@@ -27,14 +27,14 @@ pihole:
     annotations:
       purelb.io/allow-shared-ip: piholesvc
     type: LoadBalancer
-    externalTrafficPolicy: Cluster
+    externalTrafficPolicy: Local
 
   serviceDhcp:
     loadBalancerIP: 10.10.10.250
     annotations:
       purelb.io/allow-shared-ip: piholesvc
     type: LoadBalancer
-    externalTrafficPolicy: Cluster
+    externalTrafficPolicy: Local
   
   serviceWeb:
     https:
