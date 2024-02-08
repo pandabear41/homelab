@@ -1,5 +1,10 @@
 pihole:
-  replicaCount: 1
+  replicaCount: 2
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: kubernetes.io/hostname
+      whenUnsatisfiable: DoNotSchedule
 
   podAnnotations: 
     prometheus.io/port: '9617'
