@@ -71,6 +71,13 @@ pihole:
   extraContainers:
     - name: pihole-orbital-sync
       image: ghcr.io/mattwebbio/orbital-sync:1.5
+      command:
+        - sh
+        - -c
+      args:
+        - |
+          sleep 60
+          node dist/index.js
       env:
         - name: "TZ"
           value: "America/Phoenix"
