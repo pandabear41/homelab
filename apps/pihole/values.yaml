@@ -82,4 +82,9 @@ orbital-sync:
             INTERVAL_MINUTES: 30
           envFrom:
             - secretRef:
+                name: orbital-sync-config
+            - secretRef:
                 name: pihole-secret
+  service:
+    main:
+      enabled: false
