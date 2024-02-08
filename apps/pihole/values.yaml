@@ -29,6 +29,8 @@ pihole:
 
   persistentVolumeClaim:
     enabled: true
+    accessModes:
+      - ReadWriteMany
 
   serviceDns:
     loadBalancerIP: 10.10.10.250
