@@ -11,7 +11,7 @@ pihole:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-    - &host pihole.pl4.me
+      - &host pihole.pl4.me
     tls:
       - secretName: pihole-tls-certificate
         hosts:
