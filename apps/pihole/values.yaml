@@ -31,7 +31,7 @@ pihole:
   #   enabled: true
 
   persistentVolumeClaim:
-    enabled: true
+    enabled: false
     accessModes:
       - ReadWriteMany
 
