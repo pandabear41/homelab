@@ -6,6 +6,9 @@ pihole:
       topologyKey: kubernetes.io/hostname
       whenUnsatisfiable: DoNotSchedule
 
+  image:
+    repository: docker.io/pihole/pihole
+
   podAnnotations: 
     prometheus.io/port: '9617'
     prometheus.io/scrape: 'true'
