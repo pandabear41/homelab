@@ -75,7 +75,7 @@ pihole:
         - name: "TZ"
           value: "America/Phoenix"
         - name: "PRIMARY_HOST_BASE_URL"
-          value: *host
+          value: "http://pihole-web.pihole.svc.cluster.local"
         - name: "INTERVAL_MINUTES"
           value: "30"
       envFrom:
