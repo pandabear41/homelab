@@ -43,7 +43,7 @@
   data:
     - key: PASSWORD
       length: 32
-      special: true
+      special: false
 
 # ntfy
 - name: ntfy-relay.auth
