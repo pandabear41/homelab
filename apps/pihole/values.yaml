@@ -84,7 +84,7 @@ pihole:
     DNSMASQ_USER: "root"
     TZ: "America/Phoenix"
   
-  # Doesn't work with replicas.
+  # Doesn't work with replicas. Seperate to a new deployment if using more than one pihole
   extraContainers:
     - name: pihole-orbital-sync
       image: ghcr.io/mattwebbio/orbital-sync:1.5
